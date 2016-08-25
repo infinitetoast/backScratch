@@ -22,7 +22,7 @@ unhelpful or unrealisitc users.  After a user completes a task for someone else,
 ## Technology Stack
 
 Client: React Native
-Back-end: Docker, AmazonWebServices, Neo4js, Passport, Express, NodeJS, Postgre SQL
+Back-end: Docker, AmazonWebServices, Neo4js, Passport, Express, NodeJS, Postgre SQL, Auth0
 Dev: Mocha, Chai, Quay
 
 ## Table of Contents

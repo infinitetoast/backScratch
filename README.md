@@ -1,8 +1,8 @@
-# backScratcher
+# backScratch
 
 > A mobile app that provides a social networking platform for users to trade skills and services.
 
-Have you ever needed an odd job done around your house, or maybe needed someone with a pickup truck to help you move?  Do you have a unique skill that could be extremely valuable in the right situation, like installing a ceiling fan?  backScratcher can help solve these problems by allowing you to easily connect with other people that want to trade their own skills for tasks that they personally need to get done.
+Have you ever needed an odd job done around your house, or maybe needed someone with a pickup truck to help you move?  Do you have a unique skill that could be extremely valuable in the right situation, like installing a ceiling fan?  backScratch can help solve these problems by allowing you to easily connect with other people that want to trade their own skills for tasks that they personally need to get done.
 
 ## Team
 
@@ -14,7 +14,7 @@ Have you ever needed an odd job done around your house, or maybe needed someone 
 
 ## How it Works
 
-backScratcher operates off of a one to one trading algorithim.  The only way to have someone complete a task for you is to complete a task for someone else.  This "back scratching" method allows for the app to reward helpful users while lowering
+backScratch operates off of a one to one trading algorithim.  The only way to have someone complete a task for you is to complete a task for someone else.  This "back scratching" method allows for the app to reward helpful users while lowering
 unhelpful or unrealisitc users.  After a user completes a task for someone else, both the task recipient and task doer rate each other.  When a user successfully completes a task for someone else he is awarded a coin.  These coins can then be used to request tasks to be done for you.  This has the interesting side effect of converting unqunatifiable services in the real world into a shared digital currency.  Alternatively, a selfless user could never ask to have anything done for them and essiently use the app as a hub for potential volunteer work.  A leaderboard will display the most helfpul app users, and encourage users to complete more tasks for others.
 
 ## App Architecture

@@ -19,12 +19,16 @@ unhelpful or unrealisitc users.  After a user completes a task for someone else,
 
 ## App Architecture
 
+![logo](images/architecture.png)
+
 ## Technology Stack
 
 ![logo](images/techs.jpg)
 
 Client: React Native
+
 Back-end: Docker, AmazonWebServices, Neo4j, Passport, Express, NodeJS, Postgre SQL, Auth0
+
 Dev: Mocha, Chai, Quay
 
 ## Table of Contents

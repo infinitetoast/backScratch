@@ -15,7 +15,7 @@ Have you ever needed an odd job done around your house, or maybe needed someone 
 ## How it Works
 
 backScratch operates off of a one to one trading algorithim.  The only way to have someone complete a task for you is to complete a task for someone else.  This "back scratching" method allows for the app to reward helpful users while lowering
-unhelpful or unrealisitc users.  After a user completes a task for someone else, both the task recipient and task doer rate each other.  When a user successfully completes a task for someone else he is awarded a coin.  These coins can then be used to request tasks to be done for you.  This has the interesting side effect of converting unqunatifiable services in the real world into a shared digital currency.  Alternatively, a selfless user could never ask to have anything done for them and essiently use the app as a hub for potential volunteer work.  A leaderboard will display the app's most helpful users, and encourage users to complete more tasks for others.
+unhelpful or unrealistic users.  After a user completes a task for someone else, both the task recipient and task doer rate each other.  When a user successfully completes a task for someone else he is awarded a coin.  These coins can then be used to request tasks to be done for you.  This has the interesting side effect of converting unquantifiable services in the real world into a shared digital currency.  Alternatively, a selfless user could never ask to have anything done for them and essentially use the app as a hub for potential volunteer work.  A leaderboard will display the most helpful users, and encourage users to complete more tasks for others.
 
 ## App Architecture
 
@@ -24,12 +24,6 @@ unhelpful or unrealisitc users.  After a user completes a task for someone else,
 ## Technology Stack
 
 ![logo](images/techs.jpg)
-
-Client: React Native
-
-Back-end: Docker, AmazonWebServices, Neo4j, Passport, Express, NodeJS, Postgre SQL, Auth0
-
-Dev: Mocha, Chai, Quay
 
 ## Table of Contents
 

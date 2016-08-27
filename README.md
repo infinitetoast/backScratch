@@ -19,7 +19,7 @@ unhelpful or unrealistic users.  After a user completes a task for someone else,
 
 ## App Wireframe
 
-![logo](images/wireframe.png)
+![logo](images/wireframes.png)
 
 ## App Architecture
 

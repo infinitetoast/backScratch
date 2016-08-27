@@ -8,7 +8,7 @@ Have you ever needed an odd job done around your house, or maybe needed someone 
 
   - __Product Owner__: Kendall Spears
   - __Scrum Master__: Harvey Sanders
-  - __Visual Designer__: Daniel Glaser
+  - __Creative Director__: Daniel Glaser
   - __Authentication Administrator__: Neal Taylor
   - __Development Team Members__: Daniel Glaser, Harvey Sanders, Kendall Spears, Neal Taylor
 

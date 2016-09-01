@@ -2,7 +2,7 @@
 const Neo4j = require('node-neo4j');
 
 // Create a db object. We will using this object to work on the DB.
-const db = new Neo4j('http://localhost:7474');
+const db = new Neo4j('http://neo4j:neo@localhost:7474');
 
 // Run raw cypher with params
 db.cypherQuery(
@@ -11,7 +11,7 @@ db.cypherQuery(
     name: 'Ghuffran',
     company: 'Modulus',
     age: ~~(Math.random() * 100), //generate random age
-  }, function (err, result) {
+  }, (err, result) => {
     if (err) {
       return console.log(err);
     }

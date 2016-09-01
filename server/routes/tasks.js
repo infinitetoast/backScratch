@@ -1,4 +1,5 @@
 const express = require('express');
+const Task = require('../../models/task');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -12,7 +13,34 @@ const exampleTask = {
 };
 
 router.get('/', (req, res) => {
-  res.json([exampleTask]);
+  const tasks = Task.getAllTasks();
+  res.send([exampleTask]);
+});
+
+router.post('/', (req, res) => {
+  const newTask = req.body;
+  Task.createTask(newTask);
+  res.json(newTask);
+});
+
+router.get('/?userid=id', (req, res) => {
+  res.send();
+});
+
+router.get('/:id', (req, res) => {
+  const id = req.params.id;
+  res.send('get', id);
+});
+
+router.put('/:id', (req, res) => {
+  const id = req.params.id;
+  res.send(id);
+});
+
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  Task.deleteTaskById(id);
+  res.send(id);
 });
 
 module.exports = router;

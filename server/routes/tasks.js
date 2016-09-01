@@ -20,12 +20,13 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const newTask = req.body;
   Task.createTask(newTask);
-  res.json(newTask);
+  res.json({ createdTask: newTask });
 });
 
-router.get('/?userid=id', (req, res) => {
-  res.send();
-});
+// router.get('/:userid?userid=id', (req, res) => {
+//   const userId = req.query.userid;
+//   res.send(userId);
+// });
 
 router.get('/:id', (req, res) => {
   const id = req.params.id;

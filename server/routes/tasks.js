@@ -14,8 +14,8 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const newTask = req.body;
   Task.createTask(newTask)
-    .then(task => {
-      res.json(task);
+    .then((createdTask) => {
+      res.json(createdTask);
     })
     .catch(next);
 });
@@ -38,8 +38,11 @@ router.put('/:id', (req, res, next) => {
 
 router.delete('/:id', (req, res, next) => {
   const id = req.params.id;
-  Task.deleteTaskById(id);
-  res.json({ id });
+  Task.deleteTaskById(id)
+    .then(() => {
+      res.send('task deleted');
+    })
+    .catch(next);
 });
 
 module.exports = router;

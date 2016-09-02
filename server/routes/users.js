@@ -3,19 +3,40 @@ const User = require('../../models/user');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
-router.get('/', (req, res) => {
-  res.json(User.getAllUsers());
+router.get('/', (req, res, next) => {
+  User.getAllUsers()
+    .then((users) => {
+      res.json(users);
+    })
+    .catch(next);
 });
 
-router.get('/:id', (req, res) => {
-  const id = req.params.id;
-  res.json(User.getUserById(id));
+router.post('/', (req, res, next) => {
+  const newUser = req.body;
+
+  User.createUser(newUser)
+    .then((createdUser) => {
+      res.json(createdUser);
+    })
+    .catch(next);
 });
 
-router.put('/:id', (req, res) => {
+router.get('/:id', (req, res, next) => {
   const id = req.params.id;
-  const newProps = req.body;
-  res.json(User.updateUser(id, newProps));
+  User.getUserById(id)
+    .then((user) => {
+      res.json(user);
+    })
+    .catch(next);
+});
+
+router.put('/:id', (req, res, next) => {
+  const id = req.params.id;
+  User.updateUser(id)
+    .then((updatedUser) => {
+      res.json(updatedUser);
+    })
+    .catch(next);
 });
 
 module.exports = router;

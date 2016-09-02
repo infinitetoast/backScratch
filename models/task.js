@@ -1,4 +1,5 @@
 const db = require('../db');
+const test = require('../helpers/test');
 
 module.exports = {
   createTask: (task) => (
@@ -37,36 +38,57 @@ module.exports = {
     })
   ),
 
-  getAllTasks: () => {
-    db.cypher({
-      query: 'MATCH (task:Task) RETURN task',
-    }, (err, results) => {
-      if (err) throw err;
-      const result = results[0];
-      if (!result) {
-        console.log('No task found.');
-      } else {
-        const task = result.task;
-        console.log(JSON.stringify(task, null, 4));
-      }
-    });
-  },
-  getTaskById: (taskId) => {
-     // taskId is string
-
-  },
-  updateTaskById: (taskId, newPropsObj) => {
-    /*
-      newPropsObj = {
-        stars: 4,
-        dueDate: 31231
-      }
-    */
-  },
-  getTasksByUserId: (userId) => {
-
-  },
-  deleteTaskById: (taskId) => {
-
-  },
+  getAllTasks: () => (
+    new Promise((resolve, reject) => {
+      db.cypher({
+        query: 'MATCH (task:Task) RETURN task',
+      }, (err, results) => {
+        if (err) reject(err);
+        const result = results[0];
+        if (!result) {
+          console.log('No task found.');
+        } else {
+          const task = result.task;
+          console.log(JSON.stringify(task, null, 4));
+          resolve(task);
+        }
+      });
+    })
+  ),
+  getTaskById: (taskId) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      // if (err) {
+      //   reject(err);
+      // }
+      resolve(test.placeholderResponse);
+    })
+  ),
+  updateTaskById: (taskId, newPropsObj) => (
+     // Promise template
+    new Promise((resolve, reject) => {
+      // if (err) {
+      //   reject(err);
+      // }
+      resolve(test.placeholderResponse);
+    })
+  ),
+  getTasksByUserId: (userId) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      // if (err) {
+      //   reject(err);
+      // }
+      resolve(test.placeholderResponse);
+    })
+  ),
+  deleteTaskById: (taskId) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      // if (err) {
+      //   reject(err);
+      // }
+      resolve(test.placeholderResponse);
+    })
+  ),
 };

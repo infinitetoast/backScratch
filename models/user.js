@@ -2,7 +2,6 @@ const db = require('../db');
 
 module.exports = {
   createUser: (user) => {
-
     db.cypher({
       query: `CREATE (u:User {
         username: {username},
@@ -38,16 +37,17 @@ module.exports = {
       return console.log('casue i was told to');
     });
   },
-//   getAllUsers: () => {
-//     db.cypher(
-//       'Match (u:User) RETURN u',
-//        (err,result) => {
-//         if (err){
-//           return console.log(err);
-//         }
-//       }
-//       );
-//   },
+  getAllUsers: () => {
+    db.cypher(
+      'Match (u:User) RETURN u',
+      (err, result) => {
+        if (err) {
+          return console.log(err);
+        }
+        return result;
+      }
+    );
+  },
   getUserById: (userId) => {
   },
 
@@ -55,17 +55,15 @@ module.exports = {
   },
 };
 
-let test = {
- username: 'nealtaylorjs',
- email: 'nealtyalor@gmail.com',
- firstName: 'Neal',
- lastName: 'Taylor',
- coins: 4,
- stars: 3.5,
- profileImage: '12k3jhd.jpg',
- bio: 'Hello I am Neal Taylor and I am very young!',
- city: 'New Orleans',
- state: 'LA',
+const test = {
+  username: 'nealtaylorjs',
+  email: 'nealtyalor@gmail.com',
+  firstName: 'Neal',
+  lastName: 'Taylor',
+  coins: 4,
+  stars: 3.5,
+  profileImage: '12k3jhd.jpg',
+  bio: 'Hello I am Neal Taylor and I am very young!',
+  city: 'New Orleans',
+  state: 'LA',
 };
-
-module.exports.createUser(test);

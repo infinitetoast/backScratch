@@ -32,7 +32,8 @@ router.get('/:id', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   const id = req.params.id;
-  User.updateUser(id)
+  const newProps = req.body;
+  User.updateUser(id, newProps)
     .then((updatedUser) => {
       res.json(updatedUser);
     })

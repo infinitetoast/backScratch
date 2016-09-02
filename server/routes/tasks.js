@@ -27,13 +27,21 @@ router.post('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
-
-  res.json({ id });
+  Task.getTaskById(id)
+    .then(task => {
+      res.json(task);
+    })
+    .catch(next);
 });
 
 router.put('/:id', (req, res, next) => {
   const id = req.params.id;
-  res.json({ id });
+  const newProps = req.body;
+  Task.updateTaskById(id, newProps)
+    .then(task => {
+      res.json(task);
+    })
+    .catch(next);
 });
 
 router.delete('/:id', (req, res, next) => {

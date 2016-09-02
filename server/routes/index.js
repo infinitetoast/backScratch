@@ -5,7 +5,7 @@ const userRoutes = require('./users');
 const router = express.Router(); // eslint-disable-line new-cap
 
 const errorHandler = (err, req, res, next) => {
-  console.error(err);
+  console.error('request err', err);
   res.send('error with request');
 };
 

@@ -12,33 +12,40 @@ const exampleTask = {
   },
 };
 
-router.get('/', (req, res) => {
-  const tasks = Task.getAllTasks();
-  res.json([exampleTask]);
+router.get('/', (req, res, next) => {
+  Task.getAllTasks()
+    .then(tasks => {
+      res.json(tasks);
+    })
+    .catch(next);
 });
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   const newTask = req.body;
-  Task.createTask(newTask);
-  res.json({ createdTask: newTask });
+  Task.createTask(newTask)
+    .then(task => {
+      res.json(task);
+    })
+    .catch(next);
 });
 
-// router.get('/:userid?userid=id', (req, res) => {
+// router.get('/:userid?userid=id', (req, res, next) => {
 //   const userId = req.query.userid;
 //   res.send(userId);
 // });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+
+  res.json({ id });
+});
+
+router.put('/:id', (req, res, next) => {
   const id = req.params.id;
   res.json({ id });
 });
 
-router.put('/:id', (req, res) => {
-  const id = req.params.id;
-  res.json({ id });
-});
-
-router.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res, next) => {
   const id = req.params.id;
   Task.deleteTaskById(id);
   res.json({ id });

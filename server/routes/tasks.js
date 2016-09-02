@@ -14,7 +14,7 @@ const exampleTask = {
 
 router.get('/', (req, res) => {
   const tasks = Task.getAllTasks();
-  res.send([exampleTask]);
+  res.json([exampleTask]);
 });
 
 router.post('/', (req, res) => {
@@ -30,18 +30,18 @@ router.post('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const id = req.params.id;
-  res.send('get', id);
+  res.json({ id });
 });
 
 router.put('/:id', (req, res) => {
   const id = req.params.id;
-  res.send(id);
+  res.json({ id });
 });
 
 router.delete('/:id', (req, res) => {
   const id = req.params.id;
   Task.deleteTaskById(id);
-  res.send(id);
+  res.json({ id });
 });
 
 module.exports = router;

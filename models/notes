@@ -1,0 +1,166 @@
+//* variable names *
+// to create a user
+CREATE (n:user { name: '*name*', coins: 1 }) RETURN n
+
+//update user profile page
+
+//create task
+
+//edit task
+
+//view task
+
+// pending task
+
+//assign task
+
+//completed task
+//on the relationship completed needs to have the the properties rating and summary
+//example{
+//MATCH (me:Person), (movie:Movie)
+//WHERE me.name="My Name" AND movie.title="Mystic River"
+//CREATE (me)-[r:REVIEWED {rating:80, summary:"tragic character movie"}]->(movie)
+//RETURN me, r, movie   }
+
+//post assesment/ update task info
+
+//leader board
+//this will find all task and display them in order of 
+//rank
+//task completed 
+// most helpfull
+
+
+//task list. will list all task 
+//to be sorted by 
+//date posted
+//skill difficulty
+//type:  informative, labor, domestic, handyman, errands, misc
+
+
+
+dummy data
+
+{
+ username: 'nealtaylorjs',
+ email: 'nealtyalor@gmail.com',
+ firstname: 'Neal',
+ lastname: 'Taylor',
+ coins: 4,
+ stars: 3.5,
+ profileImgSrc: '12k3jhd.jpg',
+ bio: 'Hello I am Neal Taylor and I am very young!',
+ city: 'New Orleans',
+ state: 'LA',
+}
+
+{
+ username: 'glaserd92',
+ email: 'danielglaser@gmail.com',
+ firstname: 'Daniel',
+ lastname: 'Glaser',
+ coins: 18,
+ stars: 5,
+ profileImgSrc: 'as3485.jpg',
+ bio: 'Hello I am Daniel and I want to go home.',
+ city: 'Boston',
+ state: 'MA',
+}
+
+{
+ username: 'haverysandman',
+ email: 'harveysanders@gmail.com',
+ firstname: 'Harvey',
+ lastname: 'Sanders',
+ coins: 9,
+ stars: 4.5,
+ profileImgSrc: 'wrhd834.jpg',
+ bio: 'Hello I am Harvey and I am very old!',
+ city: 'Detroit',
+ state: 'MI',
+}
+
+{
+ username: 'kendallthat',
+ email: 'kendallspears@gmail.com',
+ firstname: 'Kendall',
+ lastname: 'Spears',
+ coins: 12,
+ stars: 2,
+ profileImgSrc: 'fg4234.jpg',
+ bio: 'Hello I am Kendall and I want to take a nap.',
+ city: 'Paris',
+ state: 'TX',
+}
+
+{
+ address: '123 Main Street',
+ taskName: 'Trim my bushes',
+ desc: 'I need someone to do some yardwork ya herd!',
+ type: 'Handyman',
+ difficulty: 2,
+ creationDate: '2016-09-01T21:50:00.000Z',
+ deadlineDate: '2016-10-01T17:50:00.000Z',
+}
+
+{
+ address: 'ABC Lane',
+ taskName: 'I am being sued',
+ desc: 'Please give me some poorly thought out legal advice',
+ type: 'Informative',
+ difficulty: 1,
+ creationDate: '2016-09-15T05:10:00.000Z',
+ deadlineDate: '2016-11-11T01:22:00.000Z',
+}
+
+{
+ address: '6969 HotStuff Avenue',
+ taskName: 'Clean my toilet',
+ desc: 'HELP! I TOOK A BIG DUMP AND THERE IS POO POO EVERYWHERE!',
+ type: 'Domestic',
+ difficulty: 3,
+ creationDate: '2016-10-02T01:11:00.000Z',
+ deadlineDate: '2016-10-03T02:33:00.000Z',
+}
+
+{
+ address: ' 8008 Crazy Street',
+ taskName: 'Buy me some bananas',
+ desc: 'I need some bananas ASAP! Do not ask why.',
+ type: 'Errands',
+ difficulty: 1,
+ creationDate: '2016-09-11T04:10:00.000Z',
+ deadlineDate: '2016-09-11T05:15:00.000Z',
+}
+
+createTask: (task) => {
+    db.cypher({
+      query: `CREATE (t:Task {
+        address: {address},
+        taskName:{taskName},
+        desc: {desc},
+        type: {type},
+        difficulty:{difficulty},
+        creationDate:{creationDate},
+        deadlineDate:{deadlineDate} 
+      }) RETURN t`,
+      params: {
+        address: ' 8008 Crazy Street',
+        taskName: 'Buy me some bananas',
+        desc: 'I need some bananas ASAP! Do not ask why.',
+        type: 'Errands',
+        difficulty: 1,
+        creationDate: '2016-09-11T04:10:00.000Z',
+        deadlineDate: '2016-09-11T05:15:00.000Z',
+      },
+    }, (err, results) => {
+      if (err) throw err;
+      const result = results[0];
+      if (!result) {
+        console.log('No user found.');
+      } else {
+        const task = result['t'];
+        console.log(JSON.stringify(task, null, 4));
+      }
+    });
+  },

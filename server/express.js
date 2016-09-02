@@ -2,8 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const routes = require('../server/routes');
-// require('../db');
-require('../db/user');
 
 const app = express();
 

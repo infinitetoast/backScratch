@@ -3,45 +3,54 @@ const Task = require('../../models/task');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
-const exampleTask = {
-  name: 'cut my lawn',
-  location: {
-    address: '748 Camp',
-    city: 'New Orleans',
-    state: 'LA',
-  },
-};
-
-router.get('/', (req, res) => {
-  const tasks = Task.getAllTasks();
-  res.json([exampleTask]);
+router.get('/', (req, res, next) => {
+  Task.getAllTasks()
+    .then(tasks => {
+      res.json(tasks);
+    })
+    .catch(next);
 });
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   const newTask = req.body;
-  Task.createTask(newTask);
-  res.json({ createdTask: newTask });
+  Task.createTask(newTask)
+    .then((createdTask) => {
+      res.json(createdTask);
+    })
+    .catch(next);
 });
 
-// router.get('/:userid?userid=id', (req, res) => {
+// router.get('/:userid?userid=id', (req, res, next) => {
 //   const userId = req.query.userid;
 //   res.send(userId);
 // });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res, next) => {
   const id = req.params.id;
-  res.json({ id });
+  Task.getTaskById(id)
+    .then(task => {
+      res.json(task);
+    })
+    .catch(next);
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', (req, res, next) => {
   const id = req.params.id;
-  res.json({ id });
+  const newProps = req.body;
+  Task.updateTaskById(id, newProps)
+    .then(task => {
+      res.json(task);
+    })
+    .catch(next);
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res, next) => {
   const id = req.params.id;
-  Task.deleteTaskById(id);
-  res.json({ id });
+  Task.deleteTaskById(id)
+    .then(() => {
+      res.send('task deleted');
+    })
+    .catch(next);
 });
 
 module.exports = router;

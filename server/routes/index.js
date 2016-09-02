@@ -4,7 +4,12 @@ const userRoutes = require('./users');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
-router.use('/tasks', taskRoutes);
-router.use('/users', userRoutes);
+const errorHandler = (err, req, res, next) => {
+  console.error('request err', err);
+  res.send('error with request');
+};
+
+router.use('/tasks', taskRoutes, errorHandler);
+router.use('/users', userRoutes, errorHandler);
 
 module.exports = router;

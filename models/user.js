@@ -2,10 +2,11 @@ const db = require('../db');
 const test = require('../helpers/test');
 
 module.exports = {
+  // constraints must be set before you any data is added.
+  // query: 'CREATE CONSTRAINT ON (u:User) ASSERT u.username IS UNIQUE',
   createUser: (user) => (
     new Promise((resolve, reject) => {
       db.cypher({
-        query: 'CREATE CONSTRAINT ON (u:User) ASSERT u.username IS UNIQUE',
         query: `
           CREATE (u:User {
           username: {username},

@@ -5,18 +5,21 @@ module.exports = {
   createUser: (user) => (
     new Promise((resolve, reject) => {
       db.cypher({
-        query: `CREATE (u:User {
+        query: 'CREATE CONSTRAINT ON (u:User) ASSERT u.username IS UNIQUE',
+        query: `
+          CREATE (u:User {
           username: {username},
-          bio: {bio}, 
-          email: {email}, 
+          bio: {bio},
+          email: {email},
           firstName: {firstName},
-          lastName: {lastName}, 
+          lastName: {lastName},
           coins: {coins},
-          stars:{stars},
-          profileImage: {profileImage},
+          stars: {stars},
+          profileImgSrc: {profileImgSrc},
           city: {city},
           state: {state}
-        }) RETURN u`,
+          })
+          RETURN u`,
         params: {
           username: user.username,
           email: user.email,
@@ -24,14 +27,16 @@ module.exports = {
           lastName: user.lastName,
           coins: user.coins,
           stars: user.stars,
-          profileImage: user.profileImage,
+          profileImgSrc: user.profileImgSrc,
           bio: user.bio,
           city: user.city,
           state: user.state,
         },
       },
       (err, result) => {
+        console.log('creating user');
         if (err) reject(err);
+        console.log('err', err);
         // console.log(result.data); // delivers an array of query results
         // console.log(result.columns); // delivers an array of names of objects getting returned
         resolve(result);
@@ -43,6 +48,9 @@ module.exports = {
       db.cypher(
         'Match (u:User) RETURN u',
         (err, result) => {
+          if (!results) {
+            resolve([]);
+          }
           if (err) reject(err);
           resolve(result);
         }
@@ -69,3 +77,6 @@ module.exports = {
     })
   ),
 };
+
+module.exports.createUser(
+  );

@@ -77,6 +77,3 @@ module.exports = {
     })
   ),
 };
-
-module.exports.createUser(
-  );

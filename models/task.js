@@ -99,5 +99,3 @@ module.exports = {
     })
   ),
 };
-
-module.exports.createTask()

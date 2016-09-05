@@ -67,7 +67,7 @@ module.exports = {
     // Promise template
     new Promise((resolve, reject) => {
       db.cypher({
-        query: 'MATCH (t:task) WHERE ID(t)={id} RETURN t',
+        query: 'MATCH (task) WHERE ID(task)={id} RETURN task',
         params: {
           id: taskId,
         },
@@ -76,6 +76,7 @@ module.exports = {
         if (err) {
           reject(err);
         }
+        console.log(results);
         resolve(results);
       });
     })
@@ -83,7 +84,7 @@ module.exports = {
   updateTaskById: (taskId, newPropsObj) => (
      // Promise template
     new Promise((resolve, reject) => {
-
+//todo
       // if (err) {
       //   reject(err);
       // }
@@ -93,31 +94,38 @@ module.exports = {
   getTasksByUserId: (userId) => (
     // Promise template
     new Promise((resolve, reject) => {
-      // if (err) {
-      //   reject(err);
-      // }
-      resolve(test.placeholderResponse);
+      db.cypher({
+        query: 'MATCH (t:Task {userID: {userID}}) RETURN t',
+        params: { userID: userId },
+      },
+      (err, result) => {
+        if (err) {
+          reject(err);
+        }
+        console.log(result);
+        resolve(result);
+      });
     })
   ),
   deleteTaskById: (taskId) => (
     // Promise template
     new Promise((resolve, reject) => {
-      
-      // if (err) {
-      //   reject(err);
-      // }
-      resolve(test.placeholderResponse);
+      db.cypher({
+        query: 'START n=node({id}) MATCH (n)-[r]-() DELETE r, n',
+        params: {
+          id: taskId,
+        },
+      },
+      (err, results) => {
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
+        console.log(results);
+        resolve(results);
+      });
     })
   ),
 };
 
-module.exports.createTask({
- address: ' 8008 Crazy Street',
- taskName: 'Buy me some bananas',
- desc: 'I need some bananas ASAP! Do not ask why.',
- type: 'Errands',
- difficulty: 1,
- creationDate: '2016-09-11T04:10:00.000Z',
- deadlineDate: '2016-09-11T05:15:00.000Z',
- userID: 214,
-})
+

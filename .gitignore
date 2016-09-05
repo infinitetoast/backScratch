@@ -1,4 +1,5 @@
 .env
+.vscode
 models/notes
 
 ### node etc ###

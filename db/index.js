@@ -1,3 +1,5 @@
+'use strict';
+
 const neo4jNode = require('neo4j');
 
 // https://www.npmjs.com/package/neo4j

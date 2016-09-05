@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const taskRoutes = require('./tasks');
 const userRoutes = require('./users');

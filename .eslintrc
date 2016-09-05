@@ -1,11 +1,6 @@
 {
-  "compilerOptions": {
-    "extends": [
-      "eslint:recommended",
-      "airbnb/base"
-    ]
-  },
-  "exclude": [
-    "node_modules"
-  ]
+ "extends": [
+    "eslint:recommended",
+    "airbnb/base"
+  ] 
 }

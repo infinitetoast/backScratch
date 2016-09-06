@@ -35,13 +35,10 @@ module.exports = {
         console.log('creating task');
         if (err) reject(err);
         // const result = results[0];
-        if (!results) {
-          console.log('couldnt add task', results);
-          resolve({});
+        if (!results.length) {
+          console.log('no user found for this task', results);
+          resolve({ message: 'no user found for this task' });
         } else {
-          // const theTask = result.task;
-          // console.log(JSON.stringify(theTask, null, 4));
-          console.log('i think it worked', results);
           resolve(results);
         }
       });
@@ -58,9 +55,8 @@ module.exports = {
           console.log('No task found.');
           resolve([]);
         } else {
-          const task = results;
-          console.log(JSON.stringify(task, null, 4));
-          resolve(task);
+          console.log(`Sending ${results.length} tasks`);
+          resolve(results);
         }
       });
     })

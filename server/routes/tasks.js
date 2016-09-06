@@ -28,7 +28,7 @@ router.post('/', (req, res, next) => {
 // });
 
 router.get('/:id', (req, res, next) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id, 10);
   Task.getTaskById(id)
     .then(task => {
       res.json(task);
@@ -37,7 +37,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id, 10);
   const newProps = req.body;
   Task.updateTaskById(id, newProps)
     .then(task => {
@@ -47,7 +47,7 @@ router.put('/:id', (req, res, next) => {
 });
 
 router.delete('/:id', (req, res, next) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id, 10);
   Task.deleteTaskById(id)
     .then(() => {
       res.send('task deleted');

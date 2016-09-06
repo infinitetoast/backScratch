@@ -90,5 +90,3 @@ module.exports = {
     })
   ),
 };
-
-module.exports.getUserById(190);

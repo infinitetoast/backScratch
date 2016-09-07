@@ -78,15 +78,25 @@ module.exports = {
         resolve(result);
       });
     })
-),
+  ),
 
   updateUser: (userId, newPropsObj) => (
     // Promise template
     new Promise((resolve, reject) => {
-      // if (err) {
-      //   reject(err);
-      // }
-      resolve(test.placeholderResponse);
+      db.cypher({
+        query: 'MATCH (user) WHERE ID(user)={id} RETURN user',
+        params: {
+          id: userId,
+        },
+      },
+      (err, result) => {
+        if (err) {
+          reject(err);
+        }
+        console.log(result);
+        resolve(result);
+      });
     })
   ),
+
 };

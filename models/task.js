@@ -125,6 +125,3 @@ module.exports = {
     })
   ),
 };
-
-
-module.exports.deleteTaskById(193);

@@ -78,7 +78,7 @@ module.exports = {
         resolve(result);
       });
     })
-),
+  ),
 
   updateUser: (userId, newPropsObj) => (
     // Promise template
@@ -97,6 +97,6 @@ module.exports = {
         resolve(result);
       });
     })
-),
+  ),
 
 };

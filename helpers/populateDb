@@ -1,0 +1,90 @@
+const db = require('../db');
+const user = require('../models/users')
+const task = require('../models/tasks')
+
+
+module.exports = {
+  populateUsers: () => {
+    new Promise((resolve, reject ) => {
+      db.cypher({
+        query:'CREATE (u:User) ',
+        params: {
+
+        },
+      })(err,result) => {
+        console.log('populating');
+        if(err) reject(err);
+        if(!result.length){
+          console.log('couldnt create a user')
+          resolve({message: 'couldnt find'});
+        }else {
+          resolve{result}
+        }
+      }
+    })
+  }
+}
+let neal = {
+ username: 'nealtaylorjs',
+ email: 'nealtyalor@gmail.com',
+ firstname: 'Neal',
+ lastname: 'Taylor',
+ coins: 4,
+ stars: 3.5,
+ profileImgSrc: '12k3jhd.jpg',
+ bio: 'Hello I am Neal Taylor and I am very young!',
+ city: 'New Orleans',
+ state: 'LA',
+}
+let daniel = {
+ username: 'glaserd92',
+ email: 'danielglaser@gmail.com',
+ firstname: 'Daniel',
+ lastname: 'Glaser',
+ coins: 18,
+ stars: 5,
+ profileImgSrc: 'as3485.jpg',
+ bio: 'Hello I am Daniel and I want to go home.',
+ city: 'Boston',
+ state: 'MA',
+};
+let kendall = {
+ username: 'kendallthat',
+ email: 'kendallspears@gmail.com',
+ firstname: 'Kendall',
+ lastname: 'Spears',
+ coins: 12,
+ stars: 2,
+ profileImgSrc: 'fg4234.jpg',
+ bio: 'Hello I am Kendall and I want to take a nap.',
+ city: 'Paris',
+ state: 'TX',
+};
+let faker = {
+ username: 'fakejake ',
+ email: 'sdhslsd@gmail.com',
+ firstname: 'uwish',
+ lastname: 'dontya',
+ coins: 66,
+ stars: 1.5,
+ profileImgSrc: 'wrhd8344.jpg',
+ bio: 'Hello I love old world wine!',
+ city: 'Detroit',
+ state: 'MI',
+};
+let harvey = {username: 'haverysandman',
+ email: 'harveysanders@gmail.com',
+ firstname: 'Harvey',
+ lastname: 'Sanders',
+ coins: 9,
+ stars: 4.5,
+ profileImgSrc: 'wrhd834.jpg',
+ bio: 'Hello I am Harvey and I am very old!',
+ city: 'Detroit',
+ state: 'MI',
+};
+user.createUser(neal);
+user.createUser(daniel);
+user.createUser(kendall);
+user.createUser(faker);
+user.createUser(harvey);

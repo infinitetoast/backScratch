@@ -24,7 +24,7 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id, 10);
   User.getUserById(id)
     .then((user) => {
       res.json(user);
@@ -33,7 +33,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id, 10);
   const newProps = req.body;
   User.updateUser(id, newProps)
     .then((updatedUser) => {

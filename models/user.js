@@ -1,7 +1,6 @@
 'use strict';
 
 const db = require('../db');
-const test = require('../helpers/test');
 
 module.exports = {
   // constraints must be set before you any data is added.
@@ -55,14 +54,13 @@ module.exports = {
             resolve([]);
           }
           if (err) reject(err);
-          console.log(result)
+          console.log(result);
           resolve(result);
         }
       );
     })
   ),
   getUserById: (userId) => (
-    // Promise template
     new Promise((resolve, reject) => {
       db.cypher({
         query: 'MATCH (user) WHERE ID(user)={id} RETURN user',
@@ -81,7 +79,6 @@ module.exports = {
   ),
 
   updateUser: (userId, newPropsObj) => (
-    // Promise template
     new Promise((resolve, reject) => {
       db.cypher({
         query: 'MATCH (user) WHERE ID(user)={id} RETURN user',
@@ -94,7 +91,7 @@ module.exports = {
           reject(err);
         }
         console.log(result);
-        resolve(result);
+        resolve({ message: 'Service not yet functional' });
       });
     })
   ),

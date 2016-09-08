@@ -78,6 +78,24 @@ module.exports = {
     })
   ),
 
+    getUserByEmail: (userEmail) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      db.cypher({
+        query: 'MATCH (user:User) WHERE user.email={email} RETURN user',
+        params: {
+          email: userEmail,
+        },
+      },
+      (err, result) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(result);
+      });
+    })
+  ),
+
   updateUser: (userId, newPropsObj) => (
     new Promise((resolve, reject) => {
       db.cypher({

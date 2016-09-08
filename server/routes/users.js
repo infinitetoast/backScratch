@@ -23,6 +23,15 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
+router.get('/login/:email', (req, res, next) => {
+  const userEmail = decodeURIComponent(req.params.email);
+  User.getUserByEmail(userEmail)
+    .then((user) => {
+      res.json(user);
+    })
+    .catch(next);
+});
+
 router.get('/:id', (req, res, next) => {
   const id = parseInt(req.params.id, 10);
   User.getUserById(id)

@@ -14,4 +14,8 @@ module.exports = {
     city: 'New Orleans',
     state: 'LA',
   },
+  stringify: function neo4jStringify1(object) {
+    const keys = Object.keys(object);
+    return keys.map((key) => `u.${key}= {${key}}`).join(', ');
+  },
 };

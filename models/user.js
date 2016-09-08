@@ -1,5 +1,5 @@
-'use strict';
 
+const helper = require('../helpers/test');
 const db = require('../db');
 
 module.exports = {
@@ -16,21 +16,20 @@ module.exports = {
           firstName: {firstName},
           lastName: {lastName},
           coins: {coins},
-          stars: {stars},
+          rating: {rating},
           profileImgSrc: {profileImgSrc},
           city: {city},
           state: {state}
-          })
           RETURN u`,
         params: {
           username: user.username,
           email: user.email,
           firstName: user.firstName,
           lastName: user.lastName,
-          coins: user.coins,
-          stars: user.stars,
+          coins: 1,
+          rating: 3,
           profileImgSrc: user.profileImgSrc,
-          bio: user.bio,
+          bio: '',
           city: user.city,
           state: user.state,
         },
@@ -78,7 +77,7 @@ module.exports = {
     })
   ),
 
-    getUserByEmail: (userEmail) => (
+  getUserByEmail: (userEmail) => (
     // Promise template
     new Promise((resolve, reject) => {
       db.cypher({
@@ -98,18 +97,21 @@ module.exports = {
 
   updateUser: (userId, newPropsObj) => (
     new Promise((resolve, reject) => {
+      const paramsToSet = helper.stringifyUser(newPropsObj);
+      const ID = userId;
       db.cypher({
-        query: 'MATCH (user) WHERE ID(user)={id} RETURN user',
-        params: {
-          id: userId,
-        },
+        query: `MATCH (u:User)
+        WHERE ID(u)=${ID}
+        SET ${paramsToSet}
+        RETURN u`,
+        params: newPropsObj,
       },
       (err, result) => {
         if (err) {
           reject(err);
         }
         console.log(result);
-        resolve({ message: 'Service not yet functional' });
+        resolve(result);
       });
     })
   ),

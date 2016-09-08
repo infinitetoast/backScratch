@@ -36,6 +36,15 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
+router.get('/requested_by/:id', (req, res, next) => {
+  const id = parseInt(req.params.id, 10);
+  Task.getTasksByUserId(id)
+    .then(task => {
+      res.json(task);
+    })
+    .catch(next);
+});
+
 router.put('/:id', (req, res, next) => {
   const id = parseInt(req.params.id, 10);
   const newProps = req.body;

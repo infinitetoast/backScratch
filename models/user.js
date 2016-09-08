@@ -29,7 +29,7 @@ module.exports = {
           coins: 1,
           rating: 3,
           profileImgSrc: user.profileImgSrc,
-          bio: user.bio,
+          bio: '',
           city: user.city,
           state: user.state,
         },
@@ -97,7 +97,7 @@ module.exports = {
 
   updateUser: (userId, newPropsObj) => (
     new Promise((resolve, reject) => {
-      const paramsToSet = helper.stringify(newPropsObj);
+      const paramsToSet = helper.stringifyUser(newPropsObj);
       const ID = userId;
       db.cypher({
         query: `MATCH (u:User)
@@ -111,7 +111,7 @@ module.exports = {
           reject(err);
         }
         console.log(result);
-        resolve({ message: 'Service not yet functional' });
+        resolve(result);
       });
     })
   ),

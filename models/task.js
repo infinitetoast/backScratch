@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../db');
-const test = require('../helpers/test');
+const helpers = require('../helpers/test');
 
 module.exports = {
   createTask: (task) => (
@@ -80,13 +80,23 @@ module.exports = {
     })
 ),
   updateTaskById: (taskId, newPropsObj) => (
-     // Promise template
     new Promise((resolve, reject) => {
-//todo
-      // if (err) {
-      //   reject(err);
-      // }
-      resolve(test.placeholderResponse);
+      const paramsToSet = helpers.stringifyTask(newPropsObj);
+      const ID = taskId;
+      db.cypher({
+        query: `MATCH (t:Task)
+        WHERE ID(t)=${ID}
+        SET ${paramsToSet}
+        RETURN t`,
+        params: newPropsObj,
+      },
+      (err, result) => {
+        if (err) {
+          reject(err);
+        }
+        console.log(result);
+        resolve(result);
+      });
     })
   ),
   getTasksByUserId: (userId) => (

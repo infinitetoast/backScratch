@@ -38,7 +38,7 @@ router.get('/:id', (req, res, next) => {
 
 router.get('/requested_by/:id', (req, res, next) => {
   const id = parseInt(req.params.id, 10);
-  Task.getTaskByUserId(id)
+  Task.getTasksByUserId(id)
     .then(task => {
       res.json(task);
     })

@@ -1,4 +1,3 @@
-
 const helper = require('../helpers/test');
 const db = require('../db');
 
@@ -36,11 +35,11 @@ module.exports = {
       },
       (err, result) => {
         console.log('creating user');
-        if (err) reject(err);
+        if (err) {
+          return reject(err);
+        }
         console.log('err', err);
-        // console.log(result.data); // delivers an array of query results
-        // console.log(result.columns); // delivers an array of names of objects getting returned
-        resolve(result);
+        return resolve(result);
       });
     })
   ),
@@ -49,12 +48,14 @@ module.exports = {
       db.cypher(
         'Match (u:User) RETURN u',
         (err, result) => {
-          if (!result) {
-            resolve([]);
+          if (err) {
+            return reject(err);
           }
-          if (err) reject(err);
+          if (!result) {
+            return resolve([]);
+          }
           console.log(result);
-          resolve(result);
+          return resolve(result);
         }
       );
     })
@@ -69,10 +70,10 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
-          reject(err);
+          return reject(err);
         }
         console.log(result);
-        resolve(result);
+        return resolve(result);
       });
     })
   ),
@@ -88,9 +89,9 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
-          reject(err);
+          return reject(err);
         }
-        resolve(result);
+        return resolve(result);
       });
     })
   ),
@@ -108,10 +109,10 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
-          reject(err);
+          return reject(err);
         }
         console.log(result);
-        resolve(result);
+        return resolve(result);
       });
     })
   ),

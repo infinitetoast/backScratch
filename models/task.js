@@ -65,7 +65,11 @@ module.exports = {
   assignTasks: (taskId, userId) => (
     new Promise((resolve, reject) => {
       db.cypher({
-        query: '',
+
+        query: `MATCH (t:Task),(u:User)
+          WHERE ID(t)=${taskId} AND ID(u)=${userId}
+          CREATE (t)-[a:assigned_to]->(u)
+          RETURN t ,u, a`,
       }, (err, results) => {
         if (err) reject(err);
         if (!results.length) {
@@ -152,3 +156,5 @@ module.exports = {
     })
   ),
 };
+
+module.exports.assignTasks(195, 186);

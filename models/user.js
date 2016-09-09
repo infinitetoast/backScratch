@@ -38,7 +38,7 @@ module.exports = {
         if (err) {
           return reject(err);
         }
-        console.log('err', err);
+        console.log(result);
         return resolve(result);
       });
     })
@@ -91,6 +91,7 @@ module.exports = {
         if (err) {
           return reject(err);
         }
+        console.log(result);
         return resolve(result);
       });
     })

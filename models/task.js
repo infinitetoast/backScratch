@@ -1,12 +1,11 @@
 'use strict'; // strict mode
-
 const db = require('../db');
 const helpers = require('../helpers/test');
 
 module.exports = {
   createTask: (task) => (
     new Promise((resolve, reject) => {
-      const curDate = new Date.now();
+      const curDate = new Date();
       db.cypher({
         query: `MATCH (u: User) 
         WHERE ID(u)={userID}
@@ -39,12 +38,14 @@ module.exports = {
       }, (err, results) => {
         console.log('creating task');
         if (err) {
+          console.log(err);
           return reject(err);
         }
         if (!results.length) {
           console.log('no user found for this task', results);
           return resolve({ message: 'no user found for this task' });
         }
+        console.log(results);
         return resolve(results);
       });
     })

@@ -6,6 +6,7 @@ const helpers = require('../helpers/test');
 module.exports = {
   createTask: (task) => (
     new Promise((resolve, reject) => {
+      const curDate = new Date.now();
       db.cypher({
         query: `MATCH (u: User) 
         WHERE ID(u)={userID}
@@ -14,6 +15,9 @@ module.exports = {
           taskName:{taskName},
           desc: {desc},
           type: {type},
+          status: {status},
+          assigneeCompleted: {assigneeCompleted},
+          requestorCompleted: {requestorCompleted},
           difficulty:{difficulty},
           creationDate:{creationDate},
           deadlineDate:{deadlineDate},
@@ -24,8 +28,11 @@ module.exports = {
           taskName: task.taskName,
           desc: task.desc,
           type: task.type,
+          status: 'requested',
+          assigneeCompleted: false,
+          requestorCompleted: false,
           difficulty: task.difficulty,
-          creationDate: task.creationDate,
+          creationDate: curDate,
           deadlineDate: task.deadlineDate,
           userID: task.userID,
         },
@@ -57,6 +64,26 @@ module.exports = {
         }
         console.log(`Sending ${results.length} tasks`);
         return resolve(results);
+      });
+    })
+  ),
+  assignTasks: (taskId, userId) => (
+    new Promise((resolve, reject) => {
+      db.cypher({
+
+        query: `MATCH (t:Task),(u:User)
+          WHERE ID(t)=${taskId} AND ID(u)=${userId}
+          CREATE (t)-[a:assigned_to]->(u)
+          RETURN t ,u, a`,
+      }, (err, results) => {
+        if (err) reject(err);
+        if (!results.length) {
+          console.log('No task found.');
+          resolve({ message: 'No tasks found on the server' });
+        } else {
+          console.log(`Sending ${results.length} tasks`);
+          resolve(results);
+        }
       });
     })
   ),
@@ -103,6 +130,38 @@ module.exports = {
     new Promise((resolve, reject) => {
       db.cypher({
         query: 'MATCH (t:Task {userID: {userID}}) RETURN t',
+        params: { userID: userId },
+      },
+      (err, result) => {
+        if (err) {
+          return reject(err);
+        }
+        console.log(result);
+        return resolve(result);
+      });
+    })
+  ),
+  getTasksCompletedByUserId: (userId) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      db.cypher({
+        query: '',
+        params: { userID: userId },
+      },
+      (err, result) => {
+        if (err) {
+          return reject(err);
+        }
+        console.log(result);
+        return resolve(result);
+      });
+    })
+  ),
+  getTasksCompletedForUserByUserId: (userId) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      db.cypher({
+        query: '',
         params: { userID: userId },
       },
       (err, result) => {

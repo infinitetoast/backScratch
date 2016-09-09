@@ -27,8 +27,8 @@ router.post('/', (req, res, next) => {
 //   res.send(userId);
 // });
 
-router.get('/:id', (req, res, next) => {
-  const id = parseInt(req.params.id, 10);
+router.get('/:task_id', (req, res, next) => {
+  const id = parseInt(req.params.task_id, 10);
   Task.getTaskById(id)
     .then(task => {
       res.json(task);
@@ -36,8 +36,8 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/requested_by/:id', (req, res, next) => {
-  const id = parseInt(req.params.id, 10);
+router.get('/requested_by/:user_id', (req, res, next) => {
+  const id = parseInt(req.params.user_id, 10);
   Task.getTasksByUserId(id)
     .then(task => {
       res.json(task);
@@ -45,8 +45,26 @@ router.get('/requested_by/:id', (req, res, next) => {
     .catch(next);
 });
 
-router.put('/:id', (req, res, next) => {
-  const id = parseInt(req.params.id, 10);
+router.get('/completed_by/:user_id', (req, res, next) => {
+  const id = parseInt(req.params.user_id, 10);
+  Task.getTasksCompletedByUserId(id)
+    .then(task => {
+      res.json(task);
+    })
+    .catch(next);
+});
+
+router.get('/completed_for/:user_id', (req, res, next) => {
+  const id = parseInt(req.params.user_id, 10);
+  Task.getTasksCompletedForUserByUserId(id)
+    .then(task => {
+      res.json(task);
+    })
+    .catch(next);
+});
+
+router.put('/:task_id', (req, res, next) => {
+  const id = parseInt(req.params.task_id, 10);
   const newProps = req.body;
   Task.updateTaskById(id, newProps)
     .then(task => {
@@ -55,8 +73,8 @@ router.put('/:id', (req, res, next) => {
     .catch(next);
 });
 
-router.delete('/:id', (req, res, next) => {
-  const id = parseInt(req.params.id, 10);
+router.delete('/:task_id', (req, res, next) => {
+  const id = parseInt(req.params.task_id, 10);
   Task.deleteTaskById(id)
     .then(() => {
       res.send('task deleted');

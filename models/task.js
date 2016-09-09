@@ -1,5 +1,4 @@
 'use strict'; // strict mode
-console.log('hello neal');
 const db = require('../db');
 const helpers = require('../helpers/test');
 
@@ -7,7 +6,6 @@ module.exports = {
   createTask: (task) => (
     new Promise((resolve, reject) => {
       const curDate = new Date();
-      console.log('hello harvey');
       db.cypher({
         query: `MATCH (u: User) 
         WHERE ID(u)={userID}

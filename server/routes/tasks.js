@@ -45,6 +45,12 @@ router.get('/requested_by/:user_id', (req, res, next) => {
     .catch(next);
 });
 
+router.get('/add/to/db', (req, res, next) => {
+
+  require('../../helpers/populateTask');
+  res.send({ message: 'seeding db' });
+});
+
 router.get('/completed_by/:user_id', (req, res, next) => {
   const id = parseInt(req.params.user_id, 10);
   Task.getTasksCompletedByUserId(id)

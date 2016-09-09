@@ -1,4 +1,4 @@
-'use strict';
+'use strict'; // strict mode
 
 const db = require('../db');
 const helpers = require('../helpers/test');
@@ -6,8 +6,6 @@ const helpers = require('../helpers/test');
 module.exports = {
   createTask: (task) => (
     new Promise((resolve, reject) => {
-      let query = [];
-      let params = {};
       db.cypher({
         query: `MATCH (u: User) 
         WHERE ID(u)={userID}
@@ -33,14 +31,14 @@ module.exports = {
         },
       }, (err, results) => {
         console.log('creating task');
-        if (err) reject(err);
-        // const result = results[0];
+        if (err) {
+          return reject(err);
+        }
         if (!results.length) {
           console.log('no user found for this task', results);
-          resolve({ message: 'no user found for this task' });
-        } else {
-          resolve(results);
+          return resolve({ message: 'no user found for this task' });
         }
+        return resolve(results);
       });
     })
   ),
@@ -50,14 +48,15 @@ module.exports = {
       db.cypher({
         query: 'MATCH (task:Task) RETURN task',
       }, (err, results) => {
-        if (err) reject(err);
+        if (err) {
+          return reject(err);
+        }
         if (!results.length) {
           console.log('No task found.');
-          resolve({ message: 'No tasks found on the server' });
-        } else {
-          console.log(`Sending ${results.length} tasks`);
-          resolve(results);
+          return resolve({ message: 'No tasks found on the server' });
         }
+        console.log(`Sending ${results.length} tasks`);
+        return resolve(results);
       });
     })
   ),
@@ -72,10 +71,10 @@ module.exports = {
       },
       (err, results) => {
         if (err) {
-          reject(err);
+          return reject(err);
         }
         console.log(results);
-        resolve(results);
+        return resolve(results);
       });
     })
 ),
@@ -92,10 +91,10 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
-          reject(err);
+          return reject(err);
         }
         console.log(result);
-        resolve(result);
+        return resolve(result);
       });
     })
   ),
@@ -108,10 +107,10 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
-          reject(err);
+          return reject(err);
         }
         console.log(result);
-        resolve(result);
+        return resolve(result);
       });
     })
   ),
@@ -127,10 +126,10 @@ module.exports = {
       (err, results) => {
         if (err) {
           console.log(err);
-          reject(err);
+          return reject(err);
         }
         console.log(results);
-        resolve(results);
+        return resolve(results);
       });
     })
   ),

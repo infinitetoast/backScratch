@@ -14,6 +14,7 @@ module.exports = {
           taskName:{taskName},
           desc: {desc},
           type: {type},
+          status: {status}
           difficulty:{difficulty},
           creationDate:{creationDate},
           deadlineDate:{deadlineDate},
@@ -24,6 +25,7 @@ module.exports = {
           taskName: task.taskName,
           desc: task.desc,
           type: task.type,
+          status: 'requested',
           difficulty: task.difficulty,
           creationDate: task.creationDate,
           deadlineDate: task.deadlineDate,

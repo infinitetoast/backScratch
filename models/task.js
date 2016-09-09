@@ -6,6 +6,7 @@ const helpers = require('../helpers/test');
 module.exports = {
   createTask: (task) => (
     new Promise((resolve, reject) => {
+      const curDate = new Date.now();
       db.cypher({
         query: `MATCH (u: User) 
         WHERE ID(u)={userID}
@@ -14,7 +15,8 @@ module.exports = {
           taskName:{taskName},
           desc: {desc},
           type: {type},
-          status: {status}
+          status: {status},
+          completed: {completed},
           difficulty:{difficulty},
           creationDate:{creationDate},
           deadlineDate:{deadlineDate},
@@ -26,8 +28,9 @@ module.exports = {
           desc: task.desc,
           type: task.type,
           status: 'requested',
+          completed: 'false',
           difficulty: task.difficulty,
-          creationDate: task.creationDate,
+          creationDate: curDate,
           deadlineDate: task.deadlineDate,
           userID: task.userID,
         },
@@ -136,6 +139,38 @@ module.exports = {
       });
     })
   ),
+  getTasksCompletedByUserId: (userId) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      db.cypher({
+        query: '',
+        params: { userID: userId },
+      },
+      (err, result) => {
+        if (err) {
+          return reject(err);
+        }
+        console.log(result);
+        return resolve(result);
+      });
+    })
+  ),
+  getTasksCompletedForUserByUserId: (userId) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      db.cypher({
+        query: '',
+        params: { userID: userId },
+      },
+      (err, result) => {
+        if (err) {
+          return reject(err);
+        }
+        console.log(result);
+        return resolve(result);
+      });
+    })
+  ),
   deleteTaskById: (taskId) => (
     // Promise template
     new Promise((resolve, reject) => {
@@ -156,5 +191,3 @@ module.exports = {
     })
   ),
 };
-
-module.exports.assignTasks(195, 186);

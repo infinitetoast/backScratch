@@ -18,7 +18,7 @@ module.exports = {
           rating: {rating},
           profileImgSrc: {profileImgSrc},
           city: {city},
-          state: {state}
+          state: {state}})
           RETURN u`,
         params: {
           username: user.username,
@@ -36,6 +36,7 @@ module.exports = {
       (err, result) => {
         console.log('creating user');
         if (err) {
+          console.log(err);
           return reject(err);
         }
         console.log(result);

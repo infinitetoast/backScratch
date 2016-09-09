@@ -23,6 +23,12 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
+router.get('/add/to/db', (req, res, next) => {
+
+  require('../../helpers/populateDb');
+  res.send({ message: 'seeding db' });
+});
+
 router.get('/login/:email', (req, res, next) => {
   const userEmail = decodeURIComponent(req.params.email);
   User.getUserByEmail(userEmail)
@@ -32,8 +38,8 @@ router.get('/login/:email', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:id', (req, res, next) => {
-  const id = parseInt(req.params.id, 10);
+router.get('/:user_id', (req, res, next) => {
+  const id = parseInt(req.params.user_id, 10);
   User.getUserById(id)
     .then((user) => {
       res.json(user);
@@ -41,8 +47,8 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
-router.put('/:id', (req, res, next) => {
-  const id = parseInt(req.params.id, 10);
+router.put('/:user_id', (req, res, next) => {
+  const id = parseInt(req.params.user_id, 10);
   const newProps = req.body;
   User.updateUser(id, newProps)
     .then((updatedUser) => {

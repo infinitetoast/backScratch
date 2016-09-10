@@ -146,8 +146,9 @@ module.exports = {
     // Promise template
     new Promise((resolve, reject) => {
       db.cypher({
-        query: '',
-        params: { userID: userId },
+        query: `MATCH (u:User), (t:Task)
+        WHERE ID(u)=${userId} AND (u)-[:assigned_by]-(t) AND t.status="completed"
+        RETURN t`,
       },
       (err, result) => {
         if (err) {
@@ -162,8 +163,9 @@ module.exports = {
     // Promise template
     new Promise((resolve, reject) => {
       db.cypher({
-        query: '',
-        params: { userID: userId },
+        query: `MATCH (u:User), (t:Task)
+        WHERE ID(u)=${userId} AND (u)-[:created_by]-(t) AND t.status="completed"
+        RETURN t`,
       },
       (err, result) => {
         if (err) {

@@ -57,6 +57,15 @@ router.get('/assign/to/db', (req, res, next) => {
   res.send({ message: 'seeding db' });
 });
 
+router.post('/assign', (req, res, next) => {
+  const { taskId, userId } = req.body;
+  Task.assignTasks(taskId, userId)
+   .then(result => {
+     res.json(result);
+   })
+   .catch(next);
+});
+
 router.get('/completed_by/:user_id', (req, res, next) => {
   const id = parseInt(req.params.user_id, 10);
   Task.getTasksCompletedByUserId(id)

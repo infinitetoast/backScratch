@@ -58,8 +58,7 @@ router.get('/assign/to/db', (req, res, next) => {
 });
 
 router.post('/assign', (req, res, next) => {
-  const { taskId, userId } = req.body;
-  Task.assignTasks(taskId, userId)
+  Task.assignTasks(req.body.taskId, req.body.userId)
    .then(result => {
      res.json(result);
    })

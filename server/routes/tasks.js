@@ -13,6 +13,14 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
+router.get('/requested', (req, res, next) => {
+  Task.getAllRequestedTasks()
+    .then(tasks => {
+      res.json(tasks);
+    })
+    .catch(next);
+});
+
 router.post('/', (req, res, next) => {
   const newTask = req.body;
   Task.createTask(newTask)

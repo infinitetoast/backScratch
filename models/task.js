@@ -68,6 +68,23 @@ module.exports = {
       });
     })
   ),
+  getAllRequestedTasks: () => (
+    new Promise((resolve, reject) => {
+      db.cypher({
+        query: 'MATCH (task:Task) Where task.status = "requested" RETURN task',
+      }, (err, results) => {
+        if (err) {
+          return reject(err);
+        }
+        if (!results.length) {
+          console.log('No task found.');
+          return resolve({ message: 'No tasks found on the server' });
+        }
+        console.log(`Sending ${results.length} tasks`);
+        return resolve(results);
+      });
+    })
+  ),
   assignTasks: (taskId, userId) => (
     new Promise((resolve, reject) => {
       db.cypher({

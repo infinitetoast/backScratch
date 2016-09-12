@@ -3,12 +3,12 @@ const db = require('../db');
 
 module.exports = {
   // constraints must be set before you any data is added.
-  // query: 'CREATE CONSTRAINT ON (u:User) ASSERT u.username IS UNIQUE',
+  // query: 'CREATE CONSTRAINT ON (user:User) ASSERT user.username IS UNIQUE',
   createUser: (user) => (
     new Promise((resolve, reject) => {
       db.cypher({
         query: `
-          CREATE (u:User {
+          CREATE (user:User {
           username: {username},
           bio: {bio},
           email: {email},
@@ -19,7 +19,7 @@ module.exports = {
           profileImgSrc: {profileImgSrc},
           city: {city},
           state: {state}})
-          RETURN u`,
+          RETURN user`,
         params: {
           username: user.username,
           email: user.email,
@@ -47,7 +47,7 @@ module.exports = {
   getAllUsers: () => (
     new Promise((resolve, reject) => {
       db.cypher(
-        'Match (u:User) RETURN u',
+        'Match (user:User) RETURN user',
         (err, result) => {
           if (err) {
             return reject(err);
@@ -103,10 +103,10 @@ module.exports = {
       const paramsToSet = helper.stringifyUser(newPropsObj);
       const ID = userId;
       db.cypher({
-        query: `MATCH (u:User)
-        WHERE ID(u)=${ID}
+        query: `MATCH (user:User)
+        WHERE ID(user)=${ID}
         SET ${paramsToSet}
-        RETURN u`,
+        RETURN user`,
         params: newPropsObj,
       },
       (err, result) => {

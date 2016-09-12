@@ -49,6 +49,24 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
+router.post('/completed/assignee/:task_Id', (req, res, next) => {
+  const id = parseInt(req.params.uset_Id, 10);
+  Task.completeAssigneeTaskByTaskId(id)
+    .then(tasks => {
+      res.json(tasks);
+    })
+    .catch(next);
+});
+
+router.post('/completed/requestor/:task_Id', (req, res, next) => {
+  const id = parseInt(req.params.uset_Id, 10);
+  Task.completeRequestorTaskByTaskId(id)
+    .then(tasks => {
+      res.json(tasks);
+    })
+    .catch(next);
+});
+
 // router.get('/:userid?userid=id', (req, res, next) => {
 //   const userId = req.query.userid;
 //   res.send(userId);

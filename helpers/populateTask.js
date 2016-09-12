@@ -8,7 +8,7 @@ const task1 = {
   type: 'Handyman',
   difficulty: 2,
   deadlineDate: '2016-10-01T17:50:00.000Z',
-  userID: 21,
+  userID: 4,
 };
 
 const task2 = {
@@ -18,17 +18,17 @@ const task2 = {
   type: 'Informative',
   difficulty: 1,
   deadlineDate: '2016-11-11T01:22:00.000Z',
-  userID: 19,
+  userID: 5,
 };
 
 const task3 = {
-  address: '3400 Hoadaff Avenue',
+  address: '6969 HotStuff Avenue',
   taskName: 'Clean my toilet',
-  desc: 'I\'ve tried everything!',
+  desc: 'HELP! I TOOK A BIG DUMP AND THERE IS POO POO EVERYWHERE!',
   type: 'Domestic',
   difficulty: 3,
   deadlineDate: '2016-10-03T02:33:00.000Z',
-  userID: 20,
+  userID: 6,
 };
 
 const task4 = {
@@ -38,7 +38,7 @@ const task4 = {
   type: 'Errands',
   difficulty: 1,
   deadlineDate: '2016-09-11T05:15:00.000Z',
-  userID: 22,
+  userID: 7,
 };
 
 const task5 = {
@@ -48,7 +48,7 @@ const task5 = {
   type: 'Physical Labor',
   difficulty: 1,
   deadlineDate: '2016-09-11T05:15:00.000Z',
-  userID: 23,
+  userID: 8,
 };
 
 const task6 = {
@@ -58,7 +58,7 @@ const task6 = {
   type: 'Errands',
   difficulty: 1,
   deadlineDate: '2016-09-11T05:15:00.000Z',
-  userID: 24,
+  userID: 9,
 };
 
 const task7 = {
@@ -68,7 +68,7 @@ const task7 = {
   type: 'Miscellaneous',
   difficulty: 1,
   deadlineDate: '2016-09-11T05:15:00.000Z',
-  userID: 18,
+  userID: 10,
 };
 
 const task8 = {
@@ -78,7 +78,7 @@ const task8 = {
   type: 'Errands',
   difficulty: 1,
   deadlineDate: '2016-09-11T05:15:00.000Z',
-  userID: 19,
+  userID: 11,
 };
 
 const task9 = {
@@ -88,7 +88,7 @@ const task9 = {
   type: 'Errands',
   difficulty: 1,
   deadlineDate: '2016-09-11T05:15:00.000Z',
-  userID: 17,
+  userID: 12,
 };
 
 const task10 = {
@@ -98,7 +98,7 @@ const task10 = {
   type: 'Handyman',
   difficulty: 2,
   deadlineDate: '2016-09-11T05:15:00.000Z',
-  userID: 23,
+  userID: 13,
 };
 
 const task11 = {
@@ -118,7 +118,7 @@ const task12 = {
   type: 'Informative',
   difficulty: 1,
   deadlineDate: '2016-09-11T05:15:00.000Z',
-  userID: 18,
+  userID: 7,
 };
 
 task.createTask(task1);

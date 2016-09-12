@@ -77,14 +77,15 @@ module.exports = {
           CREATE (t)-[a:assigned_to]->(u)
           RETURN t ,u, a`,
       }, (err, results) => {
-        if (err) reject(err);
+        if (err) {
+          return reject(err);
+        }
         if (!results.length) {
           console.log('No task found.');
-          resolve({ message: 'No tasks found on the server' });
-        } else {
-          console.log(`Sending ${results.length} tasks`);
-          resolve(results);
+          return resolve({ message: 'No tasks found on the server' });
         }
+        console.log('Task assigned', results);
+        return resolve(results);
       });
     })
   ),

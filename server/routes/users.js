@@ -1,8 +1,9 @@
 'use strict';
 
 const express = require('express');
+const _ = require('underscore');
+const cities = require('cities');
 const User = require('../../models/user');
-
 const router = express.Router(); // eslint-disable-line new-cap
 
 router.get('/', (req, res, next) => {
@@ -15,8 +16,11 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const newUser = req.body;
-
-  User.createUser(newUser)
+  const user = _.extend(newUser, {
+    city: cities.zip_lookup(parseInt(newUser.zip)).city,
+    state: cities.zip_lookup(parseInt(newUser.zip)).state
+  });
+  User.createUser(user)
     .then((createdUser) => {
       res.json(createdUser);
     })

@@ -7,8 +7,8 @@ module.exports = {
     new Promise((resolve, reject) => {
       const curDate = new Date();
       db.cypher({
-        query: `MATCH (u: User) 
-        WHERE ID(u)={userID}
+        query: `MATCH (user: User) 
+        WHERE ID(user)={userID}
           CREATE (task:Task {
           address: {address},
           taskName:{taskName},
@@ -21,7 +21,7 @@ module.exports = {
           creationDate:{creationDate},
           deadlineDate:{deadlineDate},
           userID: {userID}
-        })-[:created_by]->(u) RETURN task`,
+        })-[:created_by]->(user) RETURN task`,
         params: {
           address: task.address,
           taskName: task.taskName,
@@ -89,11 +89,11 @@ module.exports = {
     new Promise((resolve, reject) => {
       db.cypher({
 
-        query: `MATCH (t:Task),(u:User)
-          WHERE ID(t)=${taskId} AND ID(u)=${userId}
-          CREATE (t)-[a:assigned_to]->(u)
-          SET t.status = "assigned"
-          RETURN t ,u, a`,
+        query: `MATCH (task:Task),(user:User)
+          WHERE ID(task)=${taskId} AND ID(user)=${userId}
+          CREATE (task)-[a:assigned_to]->(user)
+          SET task.status = "assigned"
+          RETURN task ,user, a`,
       }, (err, results) => {
         if (err) {
           return reject(err);
@@ -130,10 +130,10 @@ module.exports = {
       const paramsToSet = helpers.stringifyTask(newPropsObj);
       const ID = taskId;
       db.cypher({
-        query: `MATCH (t:Task)
-        WHERE ID(t)=${ID}
+        query: `MATCH (task:Task)
+        WHERE ID(task)=${ID}
         SET ${paramsToSet}
-        RETURN t`,
+        RETURN task`,
         params: newPropsObj,
       },
       (err, result) => {
@@ -149,7 +149,7 @@ module.exports = {
     // Promise template
     new Promise((resolve, reject) => {
       db.cypher({
-        query: 'MATCH (t:Task {userID: {userID}}) RETURN t',
+        query: 'MATCH (task:Task {userID: {userID}}) RETURN task',
         params: { userID: userId },
       },
       (err, result) => {
@@ -165,9 +165,9 @@ module.exports = {
     // Promise template
     new Promise((resolve, reject) => {
       db.cypher({
-        query: `MATCH (u:User), (t:Task)
-        WHERE ID(u)=${userId} AND (u)-[:assigned_to]-(t) AND t.status="assigned"
-        RETURN t`,
+        query: `MATCH (user:User), (task:Task)
+        WHERE ID(user)=${userId} AND (user)-[:assigned_to]-(task) AND task.status="assigned"
+        RETURN task`,
       },
       (err, result) => {
         if (err) {
@@ -183,9 +183,9 @@ module.exports = {
     new Promise((resolve, reject) => {
       console.log('usereid: ', userId);
       db.cypher({
-        query: `MATCH (u:User), (t:Task)
-        WHERE ID(u)=${userId} AND (u)-[:created_by]-(t) AND t.status="assigned"
-        RETURN t`,
+        query: `MATCH (user:User), (task:Task)
+        WHERE ID(user)=${userId} AND (user)-[:created_by]-(task) AND task.status="assigned"
+        RETURN task`,
       },
       (err, result) => {
         if (err) {
@@ -200,9 +200,9 @@ module.exports = {
     // Promise template
     new Promise((resolve, reject) => {
       db.cypher({
-        query: `MATCH (u:User), (t:Task)
-        WHERE ID(u)=${userId} AND (u)-[:assigned_to]-(t) AND t.status="completed"
-        RETURN t`,
+        query: `MATCH (user:User), (task:Task)
+        WHERE ID(user)=${userId} AND (user)-[:assigned_to]-(task) AND task.status="completed"
+        RETURN task`,
       },
       (err, result) => {
         if (err) {
@@ -217,9 +217,9 @@ module.exports = {
     // Promise template
     new Promise((resolve, reject) => {
       db.cypher({
-        query: `MATCH (u:User), (t:Task)
-        WHERE ID(u)=${userId} AND (u)-[:created_by]-(t) AND t.status="completed"
-        RETURN t`,
+        query: `MATCH (user:User), (task:Task)
+        WHERE ID(user)=${userId} AND (user)-[:created_by]-(task) AND task.status="completed"
+        RETURN task`,
       },
       (err, result) => {
         if (err) {
@@ -230,6 +230,44 @@ module.exports = {
       });
     })
   ),
+  completeAssigneeTaskByTaskId: (taskId) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      db.cypher({
+        query: `MATCH (task:Task)
+        WHERE ID(task)=${taskId}
+        SET task.requestorCompleted=true
+        RETURN task`,
+      },
+      (err, result) => {
+        if (err) {
+          return reject(err);
+        }
+        console.log(result);
+        return resolve(result);
+      });
+    })
+  ),
+
+  completeRequestorTaskByTaskId: (taskId) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      db.cypher({
+        query: `MATCH (task:Task)
+        WHERE ID(task)=${taskId}
+        SET task.assigneeCompleted=true
+        RETURN task`,
+      },
+      (err, result) => {
+        if (err) {
+          return reject(err);
+        }
+        console.log(result);
+        return resolve(result);
+      });
+    })
+  ),
+
   deleteTaskById: (taskId) => (
     // Promise template
     new Promise((resolve, reject) => {

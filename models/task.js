@@ -68,6 +68,23 @@ module.exports = {
       });
     })
   ),
+  getAllRequestedTasks: () => (
+    new Promise((resolve, reject) => {
+      db.cypher({
+        query: 'MATCH (task:Task) Where task.status = "requested" RETURN task',
+      }, (err, results) => {
+        if (err) {
+          return reject(err);
+        }
+        if (!results.length) {
+          console.log('No task found.');
+          return resolve({ message: 'No tasks found on the server' });
+        }
+        console.log(`Sending ${results.length} tasks`);
+        return resolve(results);
+      });
+    })
+  ),
   assignTasks: (taskId, userId) => (
     new Promise((resolve, reject) => {
       db.cypher({
@@ -75,6 +92,7 @@ module.exports = {
         query: `MATCH (t:Task),(u:User)
           WHERE ID(t)=${taskId} AND ID(u)=${userId}
           CREATE (t)-[a:assigned_to]->(u)
+          SET t.status = "assigned"
           RETURN t ,u, a`,
       }, (err, results) => {
         if (err) {
@@ -143,12 +161,47 @@ module.exports = {
       });
     })
   ),
+  getTasksAssignedByUserId: (userId) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      db.cypher({
+        query: `MATCH (u:User), (t:Task)
+        WHERE ID(u)=${userId} AND (u)-[:assigned_to]-(t) AND t.status="assigned"
+        RETURN t`,
+      },
+      (err, result) => {
+        if (err) {
+          return reject(err);
+        }
+        console.log(result);
+        return resolve(result);
+      });
+    })
+  ),
+  getTasksCreatedByUserId: (userId) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      console.log('usereid: ', userId);
+      db.cypher({
+        query: `MATCH (u:User), (t:Task)
+        WHERE ID(u)=${userId} AND (u)-[:created_by]-(t) AND t.status="assigned"
+        RETURN t`,
+      },
+      (err, result) => {
+        if (err) {
+          return reject(err);
+        }
+        console.log(result);
+        return resolve(result);
+      });
+    })
+  ),
   getTasksCompletedByUserId: (userId) => (
     // Promise template
     new Promise((resolve, reject) => {
       db.cypher({
         query: `MATCH (u:User), (t:Task)
-        WHERE ID(u)=${userId} AND (u)-[:assigned_by]-(t) AND t.status="completed"
+        WHERE ID(u)=${userId} AND (u)-[:assigned_to]-(t) AND t.status="completed"
         RETURN t`,
       },
       (err, result) => {

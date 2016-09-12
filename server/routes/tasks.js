@@ -13,6 +13,33 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
+router.get('/requested', (req, res, next) => {
+  Task.getAllRequestedTasks()
+    .then(tasks => {
+      res.json(tasks);
+    })
+    .catch(next);
+});
+
+router.get('/requested/:user_Id', (req, res, next) => {
+  const id = parseInt(req.params.user_Id, 10);
+  Task.getTasksCreatedByUserId(id)
+    .then(tasks => {
+      res.json(tasks);
+    })
+    .catch(next);
+});
+
+router.get('/assigned/:user_Id', (req, res, next) => {
+  const id = parseInt(req.params.user_Id, 10);
+  console.log('route side id: ', id);
+  Task.getTasksAssignedByUserId(id)
+    .then(tasks => {
+      res.json(tasks);
+    })
+    .catch(next);
+});
+
 router.post('/', (req, res, next) => {
   const newTask = req.body;
   Task.createTask(newTask)

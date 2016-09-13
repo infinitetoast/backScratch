@@ -36,7 +36,7 @@ module.exports = {
       (err, result) => {
         console.log('creating user');
         if (err) {
-          console.log(err);
+          console.log('error: ', err);
           return reject(err);
         }
         console.log('creating a user: ', result);
@@ -50,6 +50,7 @@ module.exports = {
         'Match (user:User) RETURN user',
         (err, result) => {
           if (err) {
+            console.log('error: ', err);
             return reject(err);
           }
           if (!result) {
@@ -71,6 +72,7 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
+          console.log('error: ', err);
           return reject(err);
         }
         console.log('get user by Id: ', result);
@@ -90,6 +92,7 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
+          console.log('error: ', err);
           return reject(err);
         }
         console.log('get user email: ', result);
@@ -111,9 +114,10 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
+          console.log('error: ', err);
           return reject(err);
         }
-        console.log('user Update: ' ,result);
+        console.log('user Update: ', result);
         return resolve(result);
       });
     })

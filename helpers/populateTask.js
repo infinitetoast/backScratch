@@ -2,13 +2,13 @@ const task = require('../models/task');
 
 
 const task1 = {
-  address: '123 Main Street',
-  taskName: 'Trim my bushes',
-  desc: 'I need someone to do some yardwork ya herd!',
+  address: '142 lost road',
+  taskName: 'where in the world is carmen sandiago',
+  desc: 'she is lost and no one can fins here this is your mission!',
   type: 'Handyman',
-  difficulty: 2,
+  difficulty: 1,
   deadlineDate: '2016-10-01T17:50:00.000Z',
-  userID: 4,
+  userID: 267,
 };
 
 const task2 = {
@@ -122,14 +122,14 @@ const task12 = {
 };
 
 task.createTask(task1);
-task.createTask(task2);
-task.createTask(task3);
-task.createTask(task4);
-task.createTask(task5);
-task.createTask(task6);
-task.createTask(task7);
-task.createTask(task8);
-task.createTask(task9);
-task.createTask(task10);
-task.createTask(task11);
-task.createTask(task12);
+// task.createTask(task2);
+// task.createTask(task3);
+// task.createTask(task4);
+// task.createTask(task5);
+// task.createTask(task6);
+// task.createTask(task7);
+// task.createTask(task8);
+// task.createTask(task9);
+// task.createTask(task10);
+// task.createTask(task11);
+// task.createTask(task12);

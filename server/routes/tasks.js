@@ -67,10 +67,25 @@ router.post('/completed/requestor/:task_Id', (req, res, next) => {
     .catch(next);
 });
 
-// router.get('/:userid?userid=id', (req, res, next) => {
-//   const userId = req.query.userid;
-//   res.send(userId);
-// });
+router.put('/rating/requestor/:task_Id', (req, res, next) => {
+  const id = parseInt(req.params.task_Id, 10);
+  const newProps = req.body;
+  Task.ratingATask(id, newProps)
+    .then(tasks => {
+      res.json(tasks);
+    })
+    .catch(next);
+});
+
+router.put('/rating/assignee/:task_Id', (req, res, next) => {
+  const id = parseInt(req.params.task_Id, 10);
+  const newProps = req.body;
+  Task.ratingATask(id, newProps)
+    .then(tasks => {
+      res.json(tasks);
+    })
+    .catch(next);
+});
 
 router.get('/:task_id', (req, res, next) => {
   const id = parseInt(req.params.task_id, 10);

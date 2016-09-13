@@ -21,7 +21,9 @@ module.exports = {
           creationDate:{creationDate},
           deadlineDate:{deadlineDate},
           userID: {userID}
-        })-[:created_by]->(user) RETURN task`,
+        })
+        CREATE UNIQUE (task)-[:created_by]->(user) 
+        RETURN task`,
         params: {
           address: task.address,
           taskName: task.taskName,
@@ -38,14 +40,14 @@ module.exports = {
       }, (err, results) => {
         console.log('creating task');
         if (err) {
-          console.log(err);
+          console.log('err', err);
           return reject(err);
         }
         if (!results.length) {
           console.log('no user found for this task', results);
           return resolve({ message: 'no user found for this task' });
         }
-        console.log(results);
+        console.log('creating a task', results);
         return resolve(results);
       });
     })
@@ -120,7 +122,7 @@ module.exports = {
         if (err) {
           return reject(err);
         }
-        console.log(results);
+        console.log('get task by Id: ', results);
         return resolve(results);
       });
     })
@@ -140,7 +142,7 @@ module.exports = {
         if (err) {
           return reject(err);
         }
-        console.log(result);
+        console.log('updating task: ', result);
         return resolve(result);
       });
     })
@@ -156,7 +158,7 @@ module.exports = {
         if (err) {
           return reject(err);
         }
-        console.log(result);
+        console.log('get users by id', result);
         return resolve(result);
       });
     })
@@ -173,7 +175,7 @@ module.exports = {
         if (err) {
           return reject(err);
         }
-        console.log(result);
+        console.log('get task assigned to a userId: ', result);
         return resolve(result);
       });
     })
@@ -181,7 +183,6 @@ module.exports = {
   getTasksCreatedByUserId: (userId) => (
     // Promise template
     new Promise((resolve, reject) => {
-      console.log('usereid: ', userId);
       db.cypher({
         query: `MATCH (user:User), (task:Task)
         WHERE ID(user)=${userId} AND (user)-[:created_by]-(task) AND task.status="assigned"
@@ -191,7 +192,7 @@ module.exports = {
         if (err) {
           return reject(err);
         }
-        console.log(result);
+        console.log('get task created by a user and status assigned', result);
         return resolve(result);
       });
     })
@@ -208,7 +209,7 @@ module.exports = {
         if (err) {
           return reject(err);
         }
-        console.log(result);
+        console.log('get task a user compledted: ', result);
         return resolve(result);
       });
     })
@@ -225,7 +226,7 @@ module.exports = {
         if (err) {
           return reject(err);
         }
-        console.log(result);
+        console.log('get task completed for a user', result);
         return resolve(result);
       });
     })
@@ -259,7 +260,7 @@ module.exports = {
         if (err) {
           return (err);
         }
-        console.log(result);
+        console.log('changed assigneeCompleted to true', result);
         return (result);
       });
       } else {
@@ -273,7 +274,7 @@ module.exports = {
         if (err) {
           return (err);
         }
-        console.log(result);
+        console.log('changed assigneeCompleted to true, and status to completed', result);
         return (result);
       });
       }
@@ -297,7 +298,6 @@ module.exports = {
         return resolve(result);
       });
     }).then(result => {
-      console.log(result[0].task.properties.assigneeCompleted);
       if (result[0].task.properties.assigneeCompleted) {
         db.cypher({
           query: `MATCH (task:Task)
@@ -309,7 +309,7 @@ module.exports = {
         if (err) {
           return (err);
         }
-        console.log(result);
+        console.log('changed requestorCompleted to true, and status to completed', result);
         return (result);
       });
       } else {
@@ -323,7 +323,7 @@ module.exports = {
         if (err) {
           return (err);
         }
-        console.log(result);
+        console.log('changed requestorCompleted to true and status to c', result);
         return (result);
       });
       }
@@ -344,7 +344,7 @@ module.exports = {
           console.log(err);
           return reject(err);
         }
-        console.log(results);
+        console.log('delete a task: ', results);
         return resolve(results);
       });
     })

@@ -39,7 +39,7 @@ module.exports = {
           console.log(err);
           return reject(err);
         }
-        console.log(result);
+        console.log('creating a user: ', result);
         return resolve(result);
       });
     })
@@ -55,7 +55,7 @@ module.exports = {
           if (!result) {
             return resolve([]);
           }
-          console.log(result);
+          console.log('get all users: ', result);
           return resolve(result);
         }
       );
@@ -73,7 +73,7 @@ module.exports = {
         if (err) {
           return reject(err);
         }
-        console.log(result);
+        console.log('get user by Id: ', result);
         return resolve(result);
       });
     })
@@ -92,7 +92,7 @@ module.exports = {
         if (err) {
           return reject(err);
         }
-        console.log(result);
+        console.log('get user email: ', result);
         return resolve(result);
       });
     })
@@ -113,7 +113,7 @@ module.exports = {
         if (err) {
           return reject(err);
         }
-        console.log(result);
+        console.log('user Update: ' ,result);
         return resolve(result);
       });
     })

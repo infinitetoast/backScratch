@@ -16,10 +16,10 @@ module.exports = {
   },
   stringifyUser: function neo4jStringify1(object) {
     const keys = Object.keys(object);
-    return keys.map((key) => `u.${key}= {${key}}`).join(', ');
+    return keys.map((key) => `user.${key}= {${key}}`).join(', ');
   },
   stringifyTask: function neo4jStringify1(object) {
     const keys = Object.keys(object);
-    return keys.map((key) => `t.${key}= {${key}}`).join(', ');
+    return keys.map((key) => `task.${key}= {${key}}`).join(', ');
   },
 };

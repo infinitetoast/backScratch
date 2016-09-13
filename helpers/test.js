@@ -22,4 +22,8 @@ module.exports = {
     const keys = Object.keys(object);
     return keys.map((key) => `task.${key}= {${key}}`).join(', ');
   },
+  stringifyRating: function neo4jStringify1(object) {
+    const keys = Object.keys(object);
+    return keys.map((key) => `rating.${key}= {${key}}`).join(', ');
+  },
 };

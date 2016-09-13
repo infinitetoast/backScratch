@@ -59,6 +59,7 @@ module.exports = {
         query: 'MATCH (task:Task) RETURN task',
       }, (err, results) => {
         if (err) {
+          console.log('error: ', err);
           return reject(err);
         }
         if (!results.length) {
@@ -76,6 +77,7 @@ module.exports = {
         query: 'MATCH (task:Task) Where task.status = "requested" RETURN task',
       }, (err, results) => {
         if (err) {
+          console.log('error: ', err);
           return reject(err);
         }
         if (!results.length) {
@@ -98,6 +100,7 @@ module.exports = {
           RETURN task ,user, a`,
       }, (err, results) => {
         if (err) {
+          console.log('error: ', err);
           return reject(err);
         }
         if (!results.length) {
@@ -120,6 +123,7 @@ module.exports = {
       },
       (err, results) => {
         if (err) {
+          console.log('error: ', err);
           return reject(err);
         }
         console.log('get task by Id: ', results);
@@ -140,6 +144,7 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
+          console.log('error: ', err);
           return reject(err);
         }
         console.log('updating task: ', result);
@@ -156,6 +161,7 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
+          console.log('error: ', err);
           return reject(err);
         }
         console.log('get users by id', result);
@@ -173,6 +179,7 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
+          console.log('error: ', err);
           return reject(err);
         }
         console.log('get task assigned to a userId: ', result);
@@ -190,6 +197,7 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
+          console.log('error: ', err);
           return reject(err);
         }
         console.log('get task created by a user and status assigned', result);
@@ -207,6 +215,7 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
+          console.log('error: ', err);
           return reject(err);
         }
         console.log('get task a user compledted: ', result);
@@ -224,6 +233,7 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
+          console.log('error: ', err);
           return reject(err);
         }
         console.log('get task completed for a user', result);
@@ -234,7 +244,6 @@ module.exports = {
   completeAssigneeTaskByTaskId: (taskId) => (
     // Promise template
     new Promise((resolve, reject) => {
-      console.log(taskId);
       db.cypher({
         query: `MATCH (task:Task)
         WHERE ID(task)=${taskId}
@@ -242,13 +251,13 @@ module.exports = {
       },
       (err, result) => {
         if (err) {
+          console.log('error: ', err);
           return reject(err);
         }
-        console.log(result);
+        console.log('finding id', result);
         return resolve(result);
       });
     }).then(result => {
-      console.log(result[0].task.properties.requestorCompleted);
       if (result[0].task.properties.requestorCompleted) {
         db.cypher({
           query: `MATCH (task:Task)
@@ -258,9 +267,10 @@ module.exports = {
         },
       (err, result) => {
         if (err) {
+          console.log('error: ', err);
           return (err);
         }
-        console.log('changed assigneeCompleted to true', result);
+        console.log('changed assigneeCompleted to true, and status to completed', result);
         return (result);
       });
       } else {
@@ -272,9 +282,10 @@ module.exports = {
         },
       (err, result) => {
         if (err) {
+          console.log('error: ', err);
           return (err);
         }
-        console.log('changed assigneeCompleted to true, and status to completed', result);
+        console.log('changed assigneeCompleted to true', result);
         return (result);
       });
       }
@@ -284,17 +295,18 @@ module.exports = {
   completeRequestorTaskByTaskId: (taskId) => (
     // Promise template
     new Promise((resolve, reject) => {
-      console.log(taskId);
       db.cypher({
         query: `MATCH (task:Task)
         WHERE ID(task)=${taskId}
+        CREATE UNIQUE (rating:Rating)-[:task_rating]-(task)
+        Set rating.taskId=${taskId}
         RETURN task`,
       },
       (err, result) => {
         if (err) {
           return reject(err);
         }
-        console.log(result);
+        console.log('finding id', result);
         return resolve(result);
       });
     }).then(result => {
@@ -307,6 +319,7 @@ module.exports = {
         },
       (err, result) => {
         if (err) {
+          console.log('error: ', err);
           return (err);
         }
         console.log('changed requestorCompleted to true, and status to completed', result);
@@ -323,12 +336,37 @@ module.exports = {
         if (err) {
           return (err);
         }
-        console.log('changed requestorCompleted to true and status to c', result);
+        console.log('changed requestorCompleted to true', result);
         return (result);
       });
       }
     })
   ),
+
+  ratingATask: (taskId, newPropsObj) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      const paramsToSet = helpers.stringifyRating(newPropsObj);
+      const ID = taskId;
+      db.cypher({
+        query: `MATCH (rating:Rating)
+        WHERE rating.taskId=${ID}
+        SET ${paramsToSet}
+        RETURN rating`,
+        params: newPropsObj,
+      },
+
+      (err, result) => {
+        if (err) {
+          console.log('error: ', err);
+          return reject(err);
+        }
+        console.log('updating rating node', result);
+        return resolve(result);
+      });
+    })
+  ),
+
 
   deleteTaskById: (taskId) => (
     // Promise template
@@ -341,7 +379,7 @@ module.exports = {
       },
       (err, results) => {
         if (err) {
-          console.log(err);
+          console.log('error: ', err);
           return reject(err);
         }
         console.log('delete a task: ', results);

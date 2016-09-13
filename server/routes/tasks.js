@@ -4,6 +4,7 @@ const express = require('express');
 const Task = require('../../models/task');
 
 const router = express.Router(); // eslint-disable-line new-cap
+const sendEmail = require('../email/email');
 
 router.get('/', (req, res, next) => {
   Task.getAllTasks()
@@ -118,6 +119,7 @@ router.get('/assign/to/db', (req, res, next) => {
 });
 
 router.post('/assign', (req, res, next) => {
+  sendEmail();
   Task.assignTasks(req.body.taskId, req.body.userId)
    .then(result => {
      res.json(result);

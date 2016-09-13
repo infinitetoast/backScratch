@@ -233,10 +233,10 @@ module.exports = {
   completeAssigneeTaskByTaskId: (taskId) => (
     // Promise template
     new Promise((resolve, reject) => {
+      console.log(taskId);
       db.cypher({
         query: `MATCH (task:Task)
         WHERE ID(task)=${taskId}
-        SET task.requestorCompleted=true
         RETURN task`,
       },
       (err, result) => {
@@ -246,16 +246,47 @@ module.exports = {
         console.log(result);
         return resolve(result);
       });
+    }).then(result => {
+      console.log(result[0].task.properties.requestorCompleted);
+      if (result[0].task.properties.requestorCompleted) {
+        db.cypher({
+          query: `MATCH (task:Task)
+          WHERE ID(task)=${taskId}
+          SET task.assigneeCompleted=true , task.status='completed'
+          RETURN task`,
+        },
+      (err, result) => {
+        if (err) {
+          return (err);
+        }
+        console.log(result);
+        return (result);
+      });
+      } else {
+        db.cypher({
+          query: `MATCH (task:Task)
+          WHERE ID(task)=${taskId}
+          SET task.assigneeCompleted='true'
+          RETURN task`,
+        },
+      (err, result) => {
+        if (err) {
+          return (err);
+        }
+        console.log(result);
+        return (result);
+      });
+      }
     })
   ),
 
   completeRequestorTaskByTaskId: (taskId) => (
     // Promise template
     new Promise((resolve, reject) => {
+      console.log(taskId);
       db.cypher({
         query: `MATCH (task:Task)
         WHERE ID(task)=${taskId}
-        SET task.assigneeCompleted=true
         RETURN task`,
       },
       (err, result) => {
@@ -265,6 +296,37 @@ module.exports = {
         console.log(result);
         return resolve(result);
       });
+    }).then(result => {
+      console.log(result[0].task.properties.assigneeCompleted);
+      if (result[0].task.properties.assigneeCompleted) {
+        db.cypher({
+          query: `MATCH (task:Task)
+          WHERE ID(task)=${taskId}
+          SET task.requestorCompleted=true , task.status='completed'
+          RETURN task`,
+        },
+      (err, result) => {
+        if (err) {
+          return (err);
+        }
+        console.log(result);
+        return (result);
+      });
+      } else {
+        db.cypher({
+          query: `MATCH (task:Task)
+          WHERE ID(task)=${taskId}
+          SET task.requestorCompleted='true'
+          RETURN task`,
+        },
+      (err, result) => {
+        if (err) {
+          return (err);
+        }
+        console.log(result);
+        return (result);
+      });
+      }
     })
   ),
 

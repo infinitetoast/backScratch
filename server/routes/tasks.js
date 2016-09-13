@@ -50,7 +50,7 @@ router.post('/', (req, res, next) => {
 });
 
 router.post('/completed/assignee/:task_Id', (req, res, next) => {
-  const id = parseInt(req.params.uset_Id, 10);
+  const id = parseInt(req.params.task_Id, 10);
   Task.completeAssigneeTaskByTaskId(id)
     .then(tasks => {
       res.json(tasks);
@@ -59,7 +59,7 @@ router.post('/completed/assignee/:task_Id', (req, res, next) => {
 });
 
 router.post('/completed/requestor/:task_Id', (req, res, next) => {
-  const id = parseInt(req.params.uset_Id, 10);
+  const id = parseInt(req.params.task_Id, 10);
   Task.completeRequestorTaskByTaskId(id)
     .then(tasks => {
       res.json(tasks);

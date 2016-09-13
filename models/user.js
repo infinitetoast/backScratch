@@ -81,6 +81,24 @@ module.exports = {
     })
   ),
 
+  getUserByTaskId: (taskId) => (
+    new Promise((resolve, reject) => {
+      db.cypher({
+        query: `MATCH (task:Task),(user:User) 
+        WHERE ID(task)=${taskId} AND ID(user)=task.userID 
+        RETURN user`,
+      },
+      (err, result) => {
+        if (err) {
+          console.log('error: ', err);
+          return reject(err);
+        }
+        console.log('get user by Id: ', result);
+        return resolve(result);
+      });
+    })
+  ),
+
   getUserByEmail: (userEmail) => (
     // Promise template
     new Promise((resolve, reject) => {

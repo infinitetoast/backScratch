@@ -24,10 +24,10 @@ module.exports = {
   },
   stringifyAssigneeRating: function neo4jStringify1(object) {
     const keys = Object.keys(object);
-    return keys.map((key) => `rating.Assignee${key}= {${key}}`).join(', ');
+    return keys.map((key) => `rating.assignee${key}= {${key}}`).join(', ');
   },
   stringifyRequestorRating: function neo4jStringify1(object) {
     const keys = Object.keys(object);
-    return keys.map((key) => `rating.Requestor${key}= {${key}}`).join(', ');
+    return keys.map((key) => `rating.requestor${key}= {${key}}`).join(', ');
   },
 };

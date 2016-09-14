@@ -70,7 +70,7 @@ router.post('/completed/requestor/:task_Id', (req, res, next) => {
 router.put('/rating/requestor/:task_Id', (req, res, next) => {
   const id = parseInt(req.params.task_Id, 10);
   const newProps = req.body;
-  Task.ratingATask(id, newProps)
+  Task.ratingRequestorTask(id, newProps)
     .then(tasks => {
       res.json(tasks);
     })
@@ -80,7 +80,7 @@ router.put('/rating/requestor/:task_Id', (req, res, next) => {
 router.put('/rating/assignee/:task_Id', (req, res, next) => {
   const id = parseInt(req.params.task_Id, 10);
   const newProps = req.body;
-  Task.ratingATask(id, newProps)
+  Task.ratingAssigneeTask(id, newProps)
     .then(tasks => {
       res.json(tasks);
     })

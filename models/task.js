@@ -348,6 +348,8 @@ module.exports = {
     new Promise((resolve, reject) => {
       const paramsToSet = helpers.stringifyAssigneeRating(newPropsObj);
       const ID = taskId;
+      console.log('paramsToSet ', paramsToSet);
+      console.log('newPropsObj ', newPropsObj);
       db.cypher({
         query: `MATCH (rating:Rating)
         WHERE rating.taskId=${ID}
@@ -371,6 +373,8 @@ module.exports = {
     new Promise((resolve, reject) => {
       const paramsToSet = helpers.stringifyRequestorRating(newPropsObj);
       const ID = taskId;
+      console.log('paramsToSet ', paramsToSet);
+      console.log('newPropsObj ', newPropsObj);
       db.cypher({
         query: `MATCH (rating:Rating)
         WHERE rating.taskId=${ID}

@@ -343,10 +343,10 @@ module.exports = {
     })
   ),
 
-  ratingATask: (taskId, newPropsObj) => (
+  ratingAssigneeTask: (taskId, newPropsObj) => (
     // Promise template
     new Promise((resolve, reject) => {
-      const paramsToSet = helpers.stringifyRating(newPropsObj);
+      const paramsToSet = helpers.stringifyAssigneeRating(newPropsObj);
       const ID = taskId;
       db.cypher({
         query: `MATCH (rating:Rating)
@@ -366,7 +366,29 @@ module.exports = {
       });
     })
   ),
+  ratingRequestorTask: (taskId, newPropsObj) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      const paramsToSet = helpers.stringifyRequestorRating(newPropsObj);
+      const ID = taskId;
+      db.cypher({
+        query: `MATCH (rating:Rating)
+        WHERE rating.taskId=${ID}
+        SET ${paramsToSet}
+        RETURN rating`,
+        params: newPropsObj,
+      },
 
+      (err, result) => {
+        if (err) {
+          console.log('error: ', err);
+          return reject(err);
+        }
+        console.log('updating rating node', result);
+        return resolve(result);
+      });
+    })
+  ),
 
   deleteTaskById: (taskId) => (
     // Promise template

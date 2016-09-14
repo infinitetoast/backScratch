@@ -109,7 +109,7 @@ module.exports = {
     new Promise((resolve, reject) => {
       db.cypher({
         query: `MATCH (task:Task),(user:User) 
-        WHERE ID(task)=${taskId} AND ID(user)=task.requestorID 
+        WHERE ID(task)=${taskId} AND ID(user)=task.requestorId 
         RETURN user`,
       },
       (err, result) => {

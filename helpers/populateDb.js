@@ -2,29 +2,29 @@ const db = require('../db');
 const user = require('../models/user');
 console.log('we are in the right place');
 
-const neal = {
-  username: 'nealtaylorjs',
-  email: 'nealtyalor@gmail.com',
-  firstName: 'Neal',
-  lastName: 'Taylor',
+const satima = {
+  username: 'OnePunch',
+  email: 'onePunch@gmail.com',
+  firstName: 'satima',
+  lastName: 'puncher',
   profileImgSrc: '12k3jhd.jpg',
   city: 'New Orleans',
   state: 'LA',
 };
-const daniel = {
-  username: 'glaserd92',
-  email: 'danielglaser@gmail.com',
-  firstName: 'Daniel',
-  lastName: 'Glaser',
+const chramer = {
+  username: 'sideKicker',
+  email: 'porkSauaasge@gmail.com',
+  firstName: 'K3one',
+  lastName: 'L--t',
   profileImgSrc: 'as3485.jpg',
   city: 'New Orleans',
   state: 'LA',
 };
-const kendall = {
-  username: 'kendallthat',
-  email: 'kendallspears@gmail.com',
-  firstName: 'Kendall',
-  lastName: 'Spears',
+const world = {
+  username: 'MWP',
+  email: 'ronArtest@gmail.com',
+  firstName: 'Metta',
+  lastName: 'WorldPeace',
   profileImgSrc: 'fg4234.jpg',
   city: 'New Orleans',
   state: 'LA',
@@ -38,11 +38,11 @@ const faker = {
   city: 'New Orleans',
   state: 'LA',
 };
-const harvey = {
-  username: 'haverysandman',
-  email: 'harveysanders@gmail.com',
-  firstName: 'Harvey',
-  lastName: 'Sanders',
+const joe = {
+  username: 'SCARjoe',
+  email: 'therealscarjoe@gmail.com',
+  firstName: 'Scars',
+  lastName: 'joesph',
   profileImgSrc: 'wrhd834.jpg',
   city: 'New Orleans',
   state: 'LA',
@@ -101,11 +101,11 @@ const caroline = {
   city: 'New Orleans',
   state: 'LA',
 };
-user.createUser(neal);
-user.createUser(daniel);
-user.createUser(kendall);
+user.createUser(satima);
+user.createUser(chramer);
+user.createUser(world);
 user.createUser(faker);
-user.createUser(harvey);
+user.createUser(joe);
 user.createUser(caroline);
 user.createUser(susan);
 user.createUser(richard);

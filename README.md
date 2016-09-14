@@ -1,6 +1,6 @@
 # backScratch
 
-![logo](images/logofinal.png)
+![logo](images/logofinal.jpg)
 
 > A mobile app that provides a social networking platform for users to trade skills and services.
 

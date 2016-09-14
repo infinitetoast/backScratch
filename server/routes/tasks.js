@@ -119,8 +119,11 @@ router.get('/assign/to/db', (req, res, next) => {
 });
 
 router.post('/assign', (req, res, next) => {
-  sendEmail();
-  Task.assignTasks(req.body.taskId, req.body.userId)
+  let taskId = req.body.taskId;
+  let assigneeId = req.body.userId;
+  console.log(req.body);
+  sendEmail(taskId, assigneeId);
+  Task.assignTasks(taskId, assigneeId)
    .then(result => {
      res.json(result);
    })

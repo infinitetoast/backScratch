@@ -1,3 +1,5 @@
+'use strict';
+
 const dbHelpers = require('../../models/user');
 const nodemailer = require('nodemailer');
 

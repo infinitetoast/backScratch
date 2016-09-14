@@ -86,8 +86,11 @@ module.exports = {
     new Promise((resolve, reject) => {
       db.cypher({
         query: `MATCH (rating:Rating)
-        WHERE r.requestorId=${userId}
-        WITH sum(r.requestorRating) AS total
+        WHERE rating.requestorId=${userId} 
+        WITH avg(rating.requestorRating) AS total
+        MATCH (user:User)
+        WHERE ID(user)=${userId}
+        SET user.rating=total
         RETURN total`,
       },
 

@@ -8,7 +8,7 @@ module.exports = {
       const curDate = new Date();
       db.cypher({
         query: `MATCH (user: User) 
-        WHERE ID(user)={userID}
+        WHERE ID(user)={requestorId}
           CREATE (task:Task {
           address: {address},
           taskName:{taskName},
@@ -20,7 +20,7 @@ module.exports = {
           difficulty:{difficulty},
           creationDate:{creationDate},
           deadlineDate:{deadlineDate},
-          userID: {userID}
+          requestorId: {requestorId}
         })
         CREATE UNIQUE (task)-[:created_by]->(user) 
         RETURN task`,
@@ -35,7 +35,7 @@ module.exports = {
           difficulty: task.difficulty,
           creationDate: curDate,
           deadlineDate: task.deadlineDate,
-          userID: task.userID,
+          requestorId: task.requestorId,
         },
       }, (err, results) => {
         console.log('creating task');

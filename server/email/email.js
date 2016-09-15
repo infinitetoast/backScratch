@@ -41,7 +41,7 @@ const getEmailOptions = (taskId, assigneeId) => {
         mailOptions,
         {
           to: users.assignee.email,
-          text: `Hello from backScratch! You've accepted ${users.requestor.username} task! You can contact them at ${users.requestor.email} Please open the backScratch app for more information.`
+          text: `Hello from backScratch! You've accepted ${users.requestor.username}'s task! You can contact them at ${users.requestor.email} Please open the backScratch app for more information.`
         }
       ),
     })

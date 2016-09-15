@@ -30,6 +30,16 @@
 
 backScratch operates off of a one to one trading algorithim.  The only way to request for someone to complete a task for you is to complete a task for someone else.  This "back scratching" method allows the app to reward helpful users while lowering unhelpful or unrealistic users.  After a user completes a task for someone else, both the task recipient and task doer rate the exchange.  When a user successfully completes a task for someone else he is awarded a number of coins based on how difficult the finished task was.  These coins can then be used to request tasks to be done for you.  This has the interesting side effect of converting unquantifiable services in the real world into a shared digital currency.  Alternatively, a selfless user could never ask to have anything done for them and essentially use the app as a hub for potential volunteer work.  A leaderboard will display the most helpful users, and encourage users to complete more tasks for others.
 
+<br>
+
+<div align="center">
+  <img src="images/appScreen.jpg" style="width: 200px;"/>
+  <img src="images/appScreen2.jpg" style="width: 200px;"/>
+  <img src="images/appScreen3.jpg" style="width: 200px;"/>
+</div>
+
+<br>
+
 ## App Wireframe
 
 <div align="center">
@@ -46,6 +56,12 @@ backScratch operates off of a one to one trading algorithim.  The only way to re
 
 <div align="center">
   <img src="images/techs.jpg"/>
+</div>
+
+## neo4j Database in Action
+
+<div align="center">
+  <img src="images/graph.png"/>
 </div>
 
 ## Development

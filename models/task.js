@@ -53,6 +53,7 @@ module.exports = {
     })
   ),
 
+
   getAllTasks: () => (
     new Promise((resolve, reject) => {
       db.cypher({
@@ -74,7 +75,9 @@ module.exports = {
   getAllRequestedTasks: () => (
     new Promise((resolve, reject) => {
       db.cypher({
-        query: 'MATCH (task:Task) Where task.status = "requested" RETURN task',
+        query: `MATCH (task:Task),(user:User) 
+        Where task.status = "requested" AND ID(user)=task.userID 
+        RETURN task, user`,
       }, (err, results) => {
         if (err) {
           console.log('error: ', err);
@@ -85,6 +88,7 @@ module.exports = {
           return resolve({ message: 'No tasks found on the server' });
         }
         console.log(`Sending ${results.length} tasks`);
+        console.log(results);
         return resolve(results);
       });
     })
@@ -381,6 +385,30 @@ module.exports = {
         SET ${paramsToSet}
         RETURN rating`,
         params: newPropsObj,
+      },
+
+      (err, result) => {
+        if (err) {
+          console.log('error: ', err);
+          return reject(err);
+        }
+        console.log('updating rating node', result);
+        return resolve(result);
+      });
+    })
+  ),
+
+  collectiveTaskRatingByUserId: (userId) => (
+    // Promise template
+    new Promise((resolve, reject) => {
+      db.cypher({
+        query: `MATCH (rating:Rating)
+        WHERE rating.requestorId=${userId} 
+        WITH avg(rating.requestorRating) AS total
+        MATCH (user:User)
+        WHERE ID(user)=${userId}
+        SET user.rating=total
+        RETURN total`,
       },
 
       (err, result) => {

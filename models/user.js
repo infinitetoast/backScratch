@@ -81,29 +81,6 @@ module.exports = {
     })
   ),
 
-  collectiveTaskRatingByUserId: (userId) => (
-    // Promise template
-    new Promise((resolve, reject) => {
-      db.cypher({
-        query: `MATCH (rating:Rating)
-        WHERE rating.requestorId=${userId} 
-        WITH avg(rating.requestorRating) AS total
-        MATCH (user:User)
-        WHERE ID(user)=${userId}
-        SET user.rating=total
-        RETURN total`,
-      },
-
-      (err, result) => {
-        if (err) {
-          console.log('error: ', err);
-          return reject(err);
-        }
-        console.log('updating rating node', result);
-        return resolve(result);
-      });
-    })
-  ),
 
   getUserByTaskId: (taskId) => (
     new Promise((resolve, reject) => {

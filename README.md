@@ -67,12 +67,10 @@ From within the root directory:
 
 From within the root directory of backScratch-client-p:
 
-```
-react-native run-ios
+```react-native run-ios
 ```
 
-```
-npm run start
+```npm run start
 ```
 
 ### Roadmap

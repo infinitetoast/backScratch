@@ -60,17 +60,20 @@ backScratch operates off of a one to one trading algorithim.  The only way to re
 
 From within the root directory:
 
-```npm install
+```
+npm install
 ```
 
 ### Starting the iOS Simulator
 
 From within the root directory of backScratch-client-p:
 
-```react-native run-ios
+```
+react-native run-ios
 ```
 
-```npm run start
+```
+npm run start
 ```
 
 ### Roadmap

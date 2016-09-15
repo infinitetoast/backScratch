@@ -2,10 +2,12 @@
   <img src="images/logofinal.jpg" style="width: 400px;"/>
 </div>
 
+<br>
+
 <div align="center">
-  <p style="font-size: 25px;">
-    A mobile app that provides a social networking platform for users to trade skills and services. 
-  </p>
+  <b>
+    A mobile app that provides a social networking platform for users to trade skills and services.
+  </b>
 </div>
 
 <div align="center">

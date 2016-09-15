@@ -1,68 +1,78 @@
-# backScratch
+<div align="center">
+  <img src="images/logofinal.jpg" style="width: 400px;"/>
+</div>
 
-![logo](images/logofinal.jpg)
+<div align="center">
+  <p style="font-size: 25px;">
+    A mobile app that provides a social networking platform for users to trade skills and services. 
+  </p>
+</div>
 
-> A mobile app that provides a social networking platform for users to trade skills and services.
-
-Have you ever needed an odd job done around your house, or maybe needed someone with a pickup truck to help you move?  Do you have a unique skill that could be extremely valuable in the right situation, like installing a ceiling fan?  backScratch can help solve these problems by allowing you to easily connect with other people that want to trade their own skills for tasks that they personally need to get done.
+<div align="center">
+  <p>
+    Have you ever needed an odd job done around your house, or maybe needed someone with a pickup truck to help you move?  Do you have a unique skill that could be extremely valuable in the right situation, like installing a ceiling fan?  backScratch can help solve these problems by allowing you to easily connect with other people that want to trade their own skills for tasks that they personally need to get done.
+  </p>
+</div>
 
 ## Team
 
-  - __Product Owner__: Kendall Spears
-  - __Scrum Master__: Harvey Sanders
-  - __Creative Director__: Daniel Glaser
-  - __Authentication Administrator__: Neal Taylor
+  - __Product Owner__: [Kendall Spears](https://www.linkedin.com/in/kendall-spears-0853073a)
+  - __Scrum Master__: [Harvey Sanders](https://www.linkedin.com/in/harvey-sanders-82828a42)
+  - __Creative Director__: [Daniel Glaser](https://www.linkedin.com/in/danielmglaser)
+  - __Authentication Administrator__: [Neal Taylor](https://www.linkedin.com/in/1nealtaylor)
   - __Development Team Members__: Daniel Glaser, Harvey Sanders, Kendall Spears, Neal Taylor
 
 ## How it Works
 
-backScratch operates off of a one to one trading algorithim.  The only way to have someone complete a task for you is to complete a task for someone else.  This "back scratching" method allows for the app to reward helpful users while lowering
-unhelpful or unrealistic users.  After a user completes a task for someone else, both the task recipient and task doer rate each other.  When a user successfully completes a task for someone else he is awarded a coin.  These coins can then be used to request tasks to be done for you.  This has the interesting side effect of converting unquantifiable services in the real world into a shared digital currency.  Alternatively, a selfless user could never ask to have anything done for them and essentially use the app as a hub for potential volunteer work.  A leaderboard will display the most helpful users, and encourage users to complete more tasks for others.
+>Hold on, so how is this different from craigslist? 
+
+backScratch operates off of a one to one trading algorithim.  The only way to request for someone to complete a task for you is to complete a task for someone else.  This "back scratching" method allows the app to reward helpful users while lowering unhelpful or unrealistic users.  After a user completes a task for someone else, both the task recipient and task doer rate the exchange.  When a user successfully completes a task for someone else he is awarded a number of coins based on how difficult the finished task was.  These coins can then be used to request tasks to be done for you.  This has the interesting side effect of converting unquantifiable services in the real world into a shared digital currency.  Alternatively, a selfless user could never ask to have anything done for them and essentially use the app as a hub for potential volunteer work.  A leaderboard will display the most helpful users, and encourage users to complete more tasks for others.
 
 ## App Wireframe
 
-![logo](images/wireframes.png)
+<div align="center">
+  <img src="images/wireframes.png"/>
+</div>
 
 ## App Architecture
 
-![logo](images/architecture.png)
+<div align="center">
+  <img src="images/architecture.png"/>
+</div>
 
 ## Technology Stack
 
-![logo](images/techs.jpg)
-
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
-1. [Contributing](#contributing)
-
-## Usage
-
-> Some usage instructions
-
-## Requirements
-
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+<div align="center">
+  <img src="images/techs.jpg"/>
+</div>
 
 ## Development
+
+### Requirements
+
+- Node 5.1.1
+- React-Native 0.29.2
+- XCode 7.3.1
+- neo4j 3.0.4
+- CoCoPods 1.0.1
 
 ### Installing Dependencies
 
 From within the root directory:
 
-```sh
-npm install -g bower
-npm install
-bower install
+```npm install
+```
+
+### Starting the iOS Simulator
+
+From within the root directory of backScratch-client-p:
+
+```
+react-native run-ios
+```
+
+```
+npm run start
 ```
 
 ### Roadmap

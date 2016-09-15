@@ -76,7 +76,7 @@ module.exports = {
     new Promise((resolve, reject) => {
       db.cypher({
         query: `MATCH (task:Task),(user:User) 
-        Where task.status = "requested" AND ID(user)=task.userID 
+        Where task.status = "requested" AND ID(user)=task.requestorId 
         RETURN task, user`,
       }, (err, results) => {
         if (err) {

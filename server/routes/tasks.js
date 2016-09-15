@@ -71,10 +71,8 @@ router.post('/completed/requestor/:task_Id', (req, res, next) => {
 router.put('/rating/requestor/:task_Id', (req, res, next) => {
   const id = parseInt(req.params.task_Id, 10);
   const newProps = req.body;
+  //Task.collectiveTaskRatingByUserId(id);
   Task.ratingRequestorTask(id, newProps)
-  .then(() => {
-    Task.collectiveTaskRatingByUserId(id);
-  })
     .then(tasks => {
       res.json(tasks);
     })

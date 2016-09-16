@@ -28,7 +28,7 @@ module.exports = {
           coins: 1,
           rating: 3,
           profileImgSrc: user.profileImgSrc,
-          bio: '',
+          bio: user.bio || '',
           city: user.city,
           state: user.state,
         },

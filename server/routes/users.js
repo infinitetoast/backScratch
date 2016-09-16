@@ -4,6 +4,7 @@ const express = require('express');
 const _ = require('underscore');
 const cities = require('cities');
 const User = require('../../models/user');
+
 const router = express.Router(); // eslint-disable-line new-cap
 
 router.get('/', (req, res, next) => {

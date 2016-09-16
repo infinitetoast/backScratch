@@ -21,7 +21,7 @@
   - __Product Owner__: [Kendall Spears](https://www.linkedin.com/in/kendall-spears-0853073a)
   - __Scrum Master__: [Harvey Sanders](https://www.linkedin.com/in/harvey-sanders-82828a42)
   - __Creative Director__: [Daniel Glaser](https://www.linkedin.com/in/danielmglaser)
-  - __Authentication Administrator__: [Neal Taylor](https://www.linkedin.com/in/1nealtaylor)
+  - __Lead Architect__: [Neal Taylor](https://www.linkedin.com/in/1nealtaylor)
   - __Development Team Members__: Daniel Glaser, Harvey Sanders, Kendall Spears, Neal Taylor
 
 ## How it Works
@@ -33,9 +33,9 @@ backScratch operates off of a one to one trading algorithim.  The only way to re
 <br>
 
 <div align="center">
-  <img src="images/appScreen.jpg" style="width: 200px;"/>
-  <img src="images/appScreen2.jpg" style="width: 200px;"/>
-  <img src="images/appScreen3.jpg" style="width: 200px;"/>
+  <img src="images/appScreen.jpg" style="width: 150px;"/>
+  <img src="images/appScreen2.jpg" style="width: 150px;"/>
+  <img src="images/appScreen3.jpg" style="width: 150px;"/>
 </div>
 
 <br>

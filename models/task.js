@@ -89,6 +89,7 @@ module.exports = {
         }
         console.log(`Sending ${results.length} tasks`);
         console.log(results);
+        results.reverse();
         return resolve(results);
       });
     })

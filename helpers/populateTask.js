@@ -76,9 +76,9 @@ const tasks = [
   },
   {
     address: '1034 Express Street',
-    taskName: 'Domestic',
-    desc: 'Clean up help after a big party',
-    type: "Just threw a big bachelor party. It got a little crazier than expected and now there's a huge mess at my house. I need help cleaning up everything house before my fiancee gets home! Please bring multiple vacuums.",
+    taskName: 'Clean up help after a big party',
+    desc: "Just threw a big bachelor party. It got a little crazier than expected and now there's a huge mess at my house. I need help cleaning up everything house before my fiancee gets home! Please bring multiple vacuums.",
+    type: "Domestic",
     difficulty: 3,
     deadlineDate: '2016-09-15T01:00:00.000Z',
     requestorId: 0,

@@ -6,7 +6,7 @@
 
 <div align="center">
   <b>
-    A mobile app that provides a social networking platform for users to trade skills and services.
+    A mobile app that provides a social networking platform for users to trade skills and services within their community.
   </b>
 </div>
 

@@ -4,6 +4,35 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.log-line {
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 3%;
+}
+
 .app-container {
   margin: 2em;
 }
+
+.logo-div {
+  margin: 1%;
+}
+
+.dev-text {
+  margin-top: 18%;
+  align: 'center';
+}
+
+.learn-text {
+  color: white;
+  font-size: 250%;
+  padding-top: 5%;
+  margin-bottom: 5%;
+}
+
+.store {
+  margin-top: 3%;
+  margin-bottom: 5%;
+}
+
+

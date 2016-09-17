@@ -5,7 +5,7 @@
 <br>
 
 <div align="center">
-  <b>
+  <b style="width: 400px;>
     A mobile app that provides a social networking platform for users to trade skills and services within their community.
   </b>
 </div>

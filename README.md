@@ -10,6 +10,8 @@
   </b>
 </div>
 
+<br>
+
 <div align="center">
   <p>
     Have you ever needed an odd job done around your house, or maybe needed someone with a pickup truck to help you move?  Do you have a unique skill that could be extremely valuable in the right situation, like installing a ceiling fan?  backScratch can help solve these problems by allowing you to easily connect with other people that want to trade their own skills for tasks that they personally need to get done.

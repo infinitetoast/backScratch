@@ -4,9 +4,10 @@
 
 <br>
 
-<div align="center" style="width: 400px;">
+<div align="center">
   <b>
-    A mobile app that provides a social networking platform for users to trade skills and services within their community.
+    A mobile app that provides a social networking platform</br>
+    for users to trade skills and services within their community.
   </b>
 </div>
 

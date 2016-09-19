@@ -21,10 +21,10 @@
 
 ## Team
 
-  - __Product Owner__: [Kendall Spears](https://www.linkedin.com/in/kendall-spears-0853073a)
-  - __Scrum Master__: [Harvey Sanders](https://www.linkedin.com/in/harvey-sanders-82828a42)
+  - __Product Owner__: [Kendall Spears](https://www.linkedin.com/in/kendallspears)
+  - __Scrum Master__: [Harvey Sanders](https://www.linkedin.com/in/harveysanders)
   - __Creative Director__: [Daniel Glaser](https://www.linkedin.com/in/danielmglaser)
-  - __Lead Architect__: [Neal Taylor](https://www.linkedin.com/in/1nealtaylor)
+  - __Lead Architect__: [Neal Taylor](https://www.linkedin.com/in/nealhtaylor)
   - __Development Team Members__: Daniel Glaser, Harvey Sanders, Kendall Spears, Neal Taylor
 
 ## How it Works

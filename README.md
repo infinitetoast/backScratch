@@ -75,7 +75,7 @@ backScratch operates off of a one to one trading algorithim.  The only way to re
 - React-Native 0.29.2
 - XCode 7.3.1
 - neo4j 3.0.4
-- CoCoPods 1.0.1
+- CocoaPods 1.0.1
 
 ### Installing Dependencies
 
